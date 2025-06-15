@@ -133,7 +133,7 @@ a { color: inherit; text-decoration: none; }
 .card-title { font-size: 1.125rem; font-weight: 600; }
 .card-meta { font-size: 0.875rem; color: var(--text-muted); }
 .card-image.png { font-weight: 600; margin-top: 0.5rem; }
-.card-link { margin-top: 0.75rem; background: var(--primary-color); color: #fff; text-align: center; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-size: 0.875rem; }
+.card-link { margin-top: 0.75rem; background: var(--primary-color); color: #fff; text-align: center; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-size: 0.875rem; width: 15em !important; }
 .card-link:hover { opacity: 0.9; }
 
 /* Empty state */
