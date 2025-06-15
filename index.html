@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KSU CET Hostel Finder</title>
+
+    <!-- Meta tags for SEO & social -->
+    <meta name="title" content="KSU CET Hostel Finder" />
+    <meta name="description" content="Find the perfect hostel for your college life." />
+    <!-- Open-graph / Twitter cards (optional static preview) -->
+    <meta property="og:title" content="KSU CET Hostel Finder" />
+    <meta property="og:description" content="Find the perfect hostel for your college life." />
+    <meta property="og:type" content="website" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Site styles -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1 class="logo"><img class="logo-img" src="images/ksu%20logo%20white.png" alt="KSU Logo" /><span>KSU CET Hostel Finder</span></h1>
+      <nav class="site-nav"><ul><li><a href="index.html">Home</a></li><li><a href="hostels.html">Hostels</a></li><li><a href="about.html">About</a></li></ul></nav>
+    </header>
+
+    <main class="hero">
+      <h2>Find Your Next Home</h2>
+      <p class="subtitle">Discover the best student hostels with the amenities you need. Search by name, features, or distance from campus.</p>
+
+      <form id="search-form" class="selector-form">
+        <!-- hidden search input kept for compatibility -->
+        <input type="hidden" id="search-input" value="" />
+        <div class="filter-box">
+          <!-- Distance Column -->
+          <section class="filter-section distance-section">
+            <h3 class="filter-title">Distance</h3>
+            <p class="filter-desc">Select your preferred distance range</p>
+            <input type="range" id="distance-range" min="0.1" max="2" step="0.1" value="0.1" />
+            <p id="distance-value" class="range-value">100 m</p>
+            <p class="warnings">*All distances are measured from the main gate of the college</p>
+          </section>
+
+          <!-- Amenities Column -->
+          <section class="filter-section amenities-section">
+            <h3 class="filter-title">Amenities</h3>
+            <p class="filter-desc">Choose your desired amenities</p>
+            <div id="amenity-filters" class="amenity-filters selector-amenities"></div>
+          </section>
+
+          <!-- Gender Column -->
+          <section class="filter-section gender-section">
+            <h3 class="filter-title">Gender</h3>
+            <p class="filter-desc">Select your preference</p>
+            <div class="glass-radio-group-vertical gender-radio-group">
+              <input type="radio" id="gender-male" name="gender" value="male" checked />
+              <label for="gender-male">
+                <span class="radio-indicator"><span class="checkmark">✔</span></span>
+                <span class="label-text">Male</span>
+              </label>
+
+              <input type="radio" id="gender-female" name="gender" value="female" />
+              <label for="gender-female">
+                <span class="radio-indicator"><span class="checkmark">✔</span></span>
+                <span class="label-text">Female</span>
+              </label>
+
+              <input type="radio" id="gender-mixed" name="gender" value="mixed" />
+              <label for="gender-mixed">
+                <span class="radio-indicator"><span class="checkmark">✔</span></span>
+                <span class="label-text">Mixed</span>
+              </label>
+
+              <div class="glass-glider-vertical"></div>
+            </div>
+          </section>
+        </div>
+        <button type="submit" class="selector-submit">Search Hostels</button>
+      </form>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> KSU CET Hostel Finder</p>
+    </footer>
+
+    <!-- Main script (shared across pages) -->
+    <script defer src="script.js"></script>
+  </body>
+</html> 

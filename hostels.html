@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Available Hostels | KSU CET Hostel Finder</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="index.html" class="logo"><img class="logo-img" src="images/ksu%20logo%20white.png" alt="KSU Logo" /><span>KSU CET Hostel Finder</span></a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="hostels.html">Hostels</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="content">
+      <section class="hostels-controls">
+        <h2 class="page-title">Available Hostels</h2>
+        <div class="sort-wrapper">
+          <label for="sort-select">Sort:</label>
+          <select id="sort-select">
+            <option value="distance">By Distance</option>
+            <option value="price_asc">Price — Low to High</option>
+            <option value="price_desc">Price — High to Low</option>
+            <option value="rating">Rating</option>
+          </select>
+        </div>
+      </section>
+
+      <section id="hostels-list" class="hostels-list"></section>
+      <p id="empty-state" class="empty-state" hidden>No hostels found.</p>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> KSU CET Hostel Finder</p>
+    </footer>
+
+    <script defer src="script.js"></script>
+  </body>
+</html> 
