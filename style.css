@@ -533,3 +533,36 @@ a { color: inherit; text-decoration: none; }
 .social-links a:hover {
   color: var(--accent-color);
 }
+
+/* ── Mobile optimisation ────────────────────────────────────────────── */
+@media (max-width: 639px) {
+  /* Layout */
+  .site-header { flex-direction: column; gap: 0.75rem; }
+  .site-nav ul { flex-direction: column; gap: 0.75rem; align-items: center; }
+
+  .content      { padding: 1rem; }
+  .page-title   { font-size: 1.5rem; }
+
+  /* List page */
+  .hostels-list { grid-template-columns: 1fr !important; }
+  .card-title   { font-size: 1rem; }
+  .card-meta    { font-size: 0.75rem; }
+
+  /* Make CTAs fit small screens */
+  .card-link,
+  .selector-submit,
+  .external-site-btn {
+    width: 100% !important;
+  }
+
+  /* Filters */
+  .filter-section { max-width: 100%; flex: 1 1 100%; }
+
+  /* Detail page */
+  .hostel-detail    { flex-direction: column; }
+  .neu-box          { flex: 1 1 100%; }
+  .detail-img       { height: auto; }
+
+  /* Carousel buttons easier to tap */
+  .carousel-btn { font-size: 2.5rem; padding: 0 0.75rem; }
+}
