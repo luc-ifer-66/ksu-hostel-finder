@@ -1,27 +1,141 @@
 /* Shared data ----------------------------------------------------------- */
 const AMENITIES = {
-  amenity1: { name: "amenity1" },
-  amenity2: { name: "amenity2" },
-  amenity3: { name: "amenity3" }  
+  wifi: { name: "Wi-Fi" },
+  food: { name: "Food" },
+  housekeeping: { name: "Housekeeping" },
+  security: { name: "Security" },
+  kitchen: { name: "Kitchen" },
 };
 
-const hostels = [
+const FACILITIES = {
+  bus_stop: { name: "Bus Stop" },
+  atm: { name: "ATM" },
+  hospitals: { name: "Hospitals" },
+  groceries: { name: "Groceries" },
+};
+
+// Fallback dataset – used only if CSV loading fails --------------------
+const fallbackHostels = [
   {
     id: "h1",
-    name: "Hostel Name",
+    name: "Sample Hostel",
     distance: 0.5,
-    amenities: ["amenity1", "amenity2", "amenity3"],
+    amenities: ["wifi", "food", "housekeeping", "security", "kitchen"],
+    nearbyFacilities: ["bus_stop", "atm", "hospitals", "groceries"],
     rating: 4.5,
-    price: 800,
+    price: 5000,
     advance: 5000,
     location: "123 Main Road, Mysore",
     mapLink: "https://www.google.com/maps?q=12.3051,76.6551",
     gender: "mixed",
     image: "https://placehold.co/600x400/e2e8f0/e2e8f0",
+    images: [
+      "https://placehold.co/600x400/e2e8f0/e2e8f0?text=Image+1",
+      "https://placehold.co/600x400/d1d5db/d1d5db?text=Image+2",
+      "https://placehold.co/600x400/cbd5e1/cbd5e1?text=Image+3",
+    ],
     description:
       "A modern and vibrant living space located right next to the engineering faculty. Perfect for students who value convenience and a strong community.",
-  }
+    contact: "+91 98765 43210",
+  },
 ];
+
+/* Hostels array populated at runtime ----------------------------------*/
+let hostels = [];
+
+/* CSV loading helpers --------------------------------------------------*/
+function parseDistance(distStr = "") {
+  const str = String(distStr).trim().toLowerCase();
+  if (!str) return Infinity;
+  if (str.endsWith("m")) {
+    const meters = parseFloat(str);
+    return isNaN(meters) ? Infinity : meters / 1000; // convert to km
+  }
+  if (str.endsWith("km")) {
+    const km = parseFloat(str);
+    return isNaN(km) ? Infinity : km;
+  }
+  const num = parseFloat(str);
+  return isNaN(num) ? Infinity : num; // assume already in km
+}
+
+function csvToHostels(csvText = "") {
+  const lines = csvText.trim().split(/\r?\n/);
+  if (!lines.length) return [];
+
+  const headers = lines.shift().split(",").map((h) => h.trim().toLowerCase());
+  const colIndex = (key) => headers.findIndex((h) => h.startsWith(key));
+
+  return lines.map((line, idx) => {
+    const cols = line.split(",").map((c) => c.trim());
+
+    const safe = (key, fallback = "") => {
+      const i = colIndex(key);
+      return i >= 0 && i < cols.length ? cols[i] : fallback;
+    };
+
+    const name = safe("hostel");
+    const genderRaw = safe("boys/gir");
+    const vacancy = safe("vacancy");
+    const rentRaw = safe("rent");
+    const foodRaw = safe("food");
+    const advanceRaw = safe("advance");
+    const place = safe("place");
+    const distanceRaw = safe("distance");
+    const contact = safe("contact");
+
+    // --- transform fields ---
+    const numeric = (str) => {
+      const n = parseFloat(String(str).replace(/[^0-9.]/g, ""));
+      return isNaN(n) ? 0 : n;
+    };
+
+    const gender = /boys/i.test(genderRaw) && /girls/i.test(genderRaw)
+      ? "mixed"
+      : /boys/i.test(genderRaw)
+      ? "boys"
+      : /girls/i.test(genderRaw)
+      ? "girls"
+      : "mixed";
+
+    const amenities = [];
+    if (/food/i.test(foodRaw) && !/no food/i.test(foodRaw)) amenities.push("food");
+
+    return {
+      id: `h${idx + 1}`,
+      name: name || `Hostel ${idx + 1}`,
+      distance: parseDistance(distanceRaw),
+      amenities,
+      nearbyFacilities: [], // can be enriched later
+      rating: 0,
+      price: numeric(rentRaw),
+      advance: numeric(advanceRaw),
+      location: place,
+      mapLink: "#",
+      gender,
+      image: `https://placehold.co/600x400?text=${encodeURIComponent(name)}`,
+      images: [],
+      description: `Vacancy: ${vacancy || "N/A"}.`,
+      contact,
+    };
+  });
+}
+
+async function fetchHostels() {
+  if (hostels.length) return hostels; // already loaded
+
+  try {
+    const res = await fetch("data/hostels.csv");
+    if (!res.ok) throw new Error("CSV not found");
+    const csvText = await res.text();
+    hostels = csvToHostels(csvText);
+  } catch (err) {
+    console.warn("Failed to load external CSV. Falling back to sample data.", err);
+    hostels = fallbackHostels;
+  }
+
+  return hostels;
+}
 
 /* Utility helpers ------------------------------------------------------- */
 function qs(selector, scope = document) {
@@ -105,9 +219,12 @@ function initIndexPage() {
 }
 
 /* Hostels list page ---------------------------------------------------- */
-function initHostelsPage() {
+async function initHostelsPage() {
   const listEl = qs("#hostels-list");
   if (!listEl) return; // not on hostels page
+
+  // Ensure hostels data is loaded
+  await fetchHostels();
 
   const params = new URLSearchParams(window.location.search);
   const query = (params.get("q") || "").toLowerCase();
@@ -185,9 +302,12 @@ function initHostelsPage() {
 }
 
 /* Detail page ---------------------------------------------------------- */
-function initDetailPage() {
+async function initDetailPage() {
   const detailEl = qs("#hostel-detail");
   if (!detailEl) return; // not on detail page
+
+  // Ensure hostels data is loaded
+  await fetchHostels();
 
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
@@ -197,9 +317,24 @@ function initDetailPage() {
     return;
   }
 
+  const imagesArr = hostel.images && hostel.images.length ? hostel.images : [hostel.image];
+  const carouselMarkup = `
+    <div class="detail-carousel">
+      <button class="carousel-btn prev" aria-label="Previous image">&#10094;</button>
+      <div class="carousel-track">
+        ${imagesArr
+          .map(
+            (url, idx) =>
+              `<img class="detail-img" src="${url}" alt="${hostel.name} image ${idx + 1}" />`
+          )
+          .join("")}
+      </div>
+      <button class="carousel-btn next" aria-label="Next image">&#10095;</button>
+    </div>`;
+
   detailEl.innerHTML = `
     <h1 class="detail-title">${hostel.name}</h1>
-    <img class="detail-img" src="${hostel.image}" alt="${hostel.name}" />
+    ${carouselMarkup}
     <section class="neu-box detail-overview">
       <p class="card-meta">${hostel.distance} km from campus</p>
       <p class="card-price">${formatCurrency(hostel.price)} / month</p>
@@ -217,12 +352,52 @@ function initDetailPage() {
         ${hostel.amenities.map((a) => `<li>${AMENITIES[a].name}</li>`).join("")}
       </ul>
     </section>
-    <section class="neu-box detail-location">
-      <h3>Location</h3>
-      <p>${hostel.location}</p>
+    <section class="neu-box detail-contact">
+      <h3>Contact Details</h3>
+      <p>${hostel.contact || "Not available"}</p>
+    </section>
+    <section class="neu-box detail-facilities">
+      <h3>Nearby Facilities & Location</h3>
+      <ul class="amenities-list">
+        ${hostel.nearbyFacilities.map((f) => `<li>${FACILITIES[f].name}</li>`).join("")}
+      </ul>
+      <p style="margin-top: 0.75rem;">${hostel.location}</p>
       <a href="${hostel.mapLink}" target="_blank" rel="noopener">Open in Google Maps</a>
     </section>
   `;
+
+  // ----- Carousel logic -----
+  const track = qs(".carousel-track", detailEl);
+  if (track) {
+    let index = 0;
+    const slides = qsa(".detail-img", track);
+    const prevBtn = qs(".carousel-btn.prev", detailEl);
+    const nextBtn = qs(".carousel-btn.next", detailEl);
+
+    const update = () => {
+      track.style.transform = `translateX(-${index * 100}%)`;
+      // Show prev button only from second image onwards
+      if (prevBtn) prevBtn.style.visibility = index === 0 ? "hidden" : "visible";
+      // Hide next button on last image
+      if (nextBtn) nextBtn.style.visibility = index === slides.length - 1 ? "hidden" : "visible";
+    };
+
+    prevBtn.addEventListener("click", () => {
+      if (index > 0) {
+        index -= 1;
+        update();
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (index < slides.length - 1) {
+        index += 1;
+        update();
+      }
+    });
+
+    update();
+  }
 }
 
 /* Bootstrap all pages -------------------------------------------------- */
