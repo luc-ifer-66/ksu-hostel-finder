@@ -21,9 +21,3 @@ It provides a modern, user-friendly interface for students to browse hostels and
 - **Attractive Design:** Clean, responsive, and easy-to-use interface with a modern dark theme.
 
 ---
-
-## License
-
-MIT License.
-
----
