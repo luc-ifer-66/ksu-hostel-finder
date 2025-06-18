@@ -1,11 +1,3 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" class="logo" width="120"/>
-
-# remove API overview
-
-Certainly! Here’s your streamlined **README.md** with the API overview section removed:
-
----
-
 # KSU Hostel Finder
 
 **KSU Hostel Finder** is a full-stack web application for discovering and managing hostel accommodations near KSU.
