@@ -175,8 +175,10 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   justify-content: space-between;
   background: none;
-  font-size: 0.75rem;
-  color: var(--text-muted);
+  font-size: 0.8rem;
+  color: #ec2d2d;
+  text-shadow: 0 -2px 4px #8B0000 ;
+  text-decoration: underline;
   align-items: center !important;
   font-weight: 400;
   gap: 0.5rem;
@@ -572,4 +574,173 @@ a { color: inherit; text-decoration: none; }
 
   /* Carousel buttons easier to tap */
   .carousel-btn { font-size: 2.5rem; padding: 0 0.75rem; }
+}
+
+/* --- reviews (site-matching neumorphic/glass) -------------------- */
+.review-section {
+  background: var(--card-glass);
+  border-radius: var(--border-radius);
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.4), -4px -4px 10px rgba(255,255,255,0.05);
+  padding: 2.2rem 2.5rem 2.2rem 2.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-color);
+  backdrop-filter: blur(var(--card-glass-blur));
+  border: 1.5px solid var(--card-border);
+}
+.review-section h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.01em;
+  color: var(--accent-color);
+}
+.avg-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.1rem;
+  color: var(--accent-color);
+  margin-bottom: 1.2rem;
+}
+#avg-stars i {
+  font-size: 1.3rem;
+  color: var(--accent-color);
+  margin-right: 0.1rem;
+  text-shadow: 0 1px 2px #0ff2ff33;
+}
+#review-count {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+.reviews-list {
+  margin-bottom: 1.5rem;
+}
+.reviews-list li {
+  background: rgba(255,255,255,0.07);
+  border-radius: 0.7rem;
+  box-shadow: 0 1px 4px 0 rgba(31,38,135,0.07);
+  padding: 1rem 1.2rem 0.7rem 1.2rem;
+  margin-bottom: 1.1rem;
+  transition: box-shadow 0.2s, background 0.2s;
+  color: var(--text-color);
+}
+.reviews-list li:hover {
+  box-shadow: 0 2px 12px 0 var(--accent-color);
+  background: rgba(6,182,212,0.10);
+}
+.review-head {
+  font-size: 1.05rem;
+  color: var(--accent-color);
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+}
+.review-head .date {
+  color: var(--text-muted);
+  font-size: 0.93rem;
+  margin-left: 0.7rem;
+  font-weight: 400;
+}
+.review-section .star-input {
+  display: flex;
+  gap: 0.18rem;
+  margin-bottom: 0.7rem;
+}
+.review-section .star-input i {
+  cursor: pointer;
+  color: #b6eaff;
+  font-size: 1.5rem;
+  transition: color 0.18s, transform 0.18s;
+  filter: drop-shadow(0 1px 2px #0001);
+}
+.review-section .star-input i.fa-solid {
+  color: var(--accent-color);
+  text-shadow: 0 1px 2px #0ff2ff33;
+  transform: scale(1.13);
+}
+.review-section .star-input i:hover,
+.review-section .star-input i:focus {
+  color: var(--primary-color);
+  transform: scale(1.18);
+}
+#review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+}
+#review-text {
+  border-radius: 0.6rem;
+  border: 1.5px solid var(--card-border);
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 2.5rem;
+  background: rgba(255,255,255,0.10);
+  color: var(--text-color);
+  transition: border 0.18s, background 0.18s;
+}
+#review-text:focus {
+  border: 1.5px solid var(--accent-color);
+  outline: none;
+  background: rgba(6,182,212,0.10);
+}
+#review-form button[type="submit"] {
+  align-self: flex-end;
+  background: var(--accent-gradient);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.7rem;
+  font-size: 1.08rem;
+  box-shadow: 0 1px 4px 0 rgba(31,38,135,0.13);
+  cursor: pointer;
+  transition: background 0.18s, box-shadow 0.18s;
+}
+#review-form button[type="submit"]:hover {
+  background: linear-gradient(90deg, #2563eb 60%, #06b6d4 100%);
+  box-shadow: 0 2px 10px 0 var(--accent-color);
+}
+
+.review-flex-row {
+  display: flex;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 2.5rem auto;
+  align-items: flex-start;
+}
+.review-form-box {
+  flex: 1 1 320px;
+  min-width: 320px;
+  max-width: 400px;
+  padding-right: 1.5rem;
+}
+.review-list-box {
+  flex: 2 1 0%;
+  min-width: 0;
+  padding-left: 1.5rem;
+  max-width: 100%;
+}
+@media (max-width: 900px) {
+  .review-flex-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .review-form-box, .review-list-box {
+    max-width: 100%;
+    padding: 0;
+  }
+}
+.review-list-box h3 {
+  margin-bottom: 1.2rem;
+  color: var(--accent-color);
+}
+
+#star-input, #star-input i {
+  pointer-events: auto !important;
+  z-index: 2;
 }

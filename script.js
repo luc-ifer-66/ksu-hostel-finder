@@ -3,8 +3,6 @@ const AMENITIES = {
   wifi: { name: "Wi-Fi" },
   food: { name: "Food" },
   housekeeping: { name: "Housekeeping" },
-  security: { name: "Security" },
-  kitchen: { name: "Kitchen" },
 };
 
 const FACILITIES = {
@@ -19,410 +17,11 @@ const FACILITIES = {
 const fallbackHostels = [
   {
     id: "h1",
-    name: "Priyanka Nilayam",
-    rating: 0,
-    vacancies: 10,
-    price: 5000,
-    advance: 5000,
-    gender: "boys",
-    distance: 0.12,
-    location: "Opp. Post Office Gate",
-    mapLink: "https://maps.app.goo.gl/Bx5gjTds5HcoY9467",
-    contact: "7025458339",
-    amenities: ["wifi", "housekeeping", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.06 },
-      { code: "atm", distance: 0.05 },
-      { code: "hospitals", distance: 1.0 },
-      { code: "groceries", distance: 0.075 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Priyanka+Nilayam",
-    images: [],
-    description: "Vacancy: 10"
-  },
-
-  {
-    id: "h2",
-    name: "Kalyani",
-    rating: 0,
-    vacancies: 8,
-    price: 7000,
-    advance: 6000,
-    gender: "girls",
-    distance: 0.9,
-    location: "CRP Nagar",
-    mapLink: "https://www.google.com/maps?q=CRP+Nagar",
-    contact: "",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.8 },
-      { code: "atm", distance: 0.75 },
-      { code: "hospitals", distance: 1.0 },
-      { code: "groceries", distance: 0.305 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Kalyani",
-    images: [],
-    description: "Vacancy: 8"
-  },
-
-  {
-    id: "h3",
-    name: "Karthika",
-    rating: 0,
-    vacancies: 4,
-    price: 3000,
-    advance: 5000,
-    gender: "boys",
-    distance: 0.8,
-    location: "Thiru Nagar",
-    mapLink: "https://www.google.com/maps?q=Thiru+Nagar",
-    contact: "",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.8 },
-      { code: "atm", distance: 0.75 },
-      { code: "hospitals", distance: 1.0 },
-      { code: "groceries", distance: 0.305 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Karthika",
-    images: [],
-    description: "Vacancy: 4"
-  },
-
-  {
-    id: "h4",
-    name: "Niva",
-    rating: 0,
-    vacancies: 5,
-    price: "6500-7000",
-    advance: 5000,
-    gender: "girls",
-    distance: 0.85,
-    location: "Thiru Nagar",
-    mapLink: "https://www.google.com/maps?q=Thiru+Nagar",
-    contact: "",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.8 },
-      { code: "atm", distance: 0.75 },
-      { code: "hospitals", distance: 1.0 },
-      { code: "groceries", distance: 0.305 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Niva",
-    images: [],
-    description: "Vacancy: 5"
-  },
-
-  {
-    id: "h5",
-    name: "Swapnakoodu",
-    rating: 0,
-    vacancies: 2,
-    price: 4000,
-    advance: 0,
-    gender: "girls",
-    distance: 0.95,
-    location: "CRP Nagar",
-    mapLink: "https://www.google.com/maps?q=CRP+Nagar",
-    contact: "",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.8 },
-      { code: "atm", distance: 0.75 },
-      { code: "hospitals", distance: 1.0 },
-      { code: "groceries", distance: 0.305 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Swapnakoodu",
-    images: [],
-    description: "Vacancy: 2"
-  },
-
-  {
-    id: "h6",
-    name: "Amritha",
-    rating: 0,
-    vacancies: 52,
-    price: 8000,
-    advance: 10000,
-    gender: "girls",
-    distance: 0.65,
-    location: "Ambadi Nagar Lane 2",
-    mapLink: "https://maps.app.goo.gl/x5JXLEsKVxVy7Fig8",
-    contact: "9995740977",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.1 },
-      { code: "atm", distance: 0.5 },
-      { code: "hospitals", distance: 0.3 },
-      { code: "groceries", distance: 0.25 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Amritha",
-    images: [],
-    description: "Vacancy: 52"
-  },
-
-  {
-    id: "h7",
-    name: "Kurukshetra",
-    rating: 0,
-    vacancies: 5,
-    price: 3500,
-    advance: 5000,
-    gender: "girls",
-    distance: 0.45,
-    location: "Opp. Ashokan's Chayakada",
-    mapLink: "https://www.google.com/maps?q=Ashokan+Chayakada",
-    contact: "",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.25 },
-      { code: "atm", distance: 0.45 },
-      { code: "hospitals", distance: 1.2 },
-      { code: "groceries", distance: 0.3 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Kurukshetra",
-    images: [],
-    description: "Vacancy: 5"
-  },
-
-  {
-    id: "h8",
-    name: "Ammus",
-    rating: 0,
-    vacancies: 20,
-    price: 7500,
-    advance: 10000,
-    gender: "girls",
-    distance: 0.6,
-    location: "Opp. CRP Nagar",
-    mapLink: "https://maps.app.goo.gl/7WCtubTc7HxzbUQG6",
-    contact: "",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.8 },
-      { code: "atm", distance: 0.75 },
-      { code: "hospitals", distance: 1.0 },
-      { code: "groceries", distance: 0.305 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Ammus",
-    images: [],
-    description: "Vacancy: 20"
-  },
-
-  {
-    id: "h9",
-    name: "Angels Beth",
-    rating: 0,
-    vacancies: 5,
-    price: "7500-9500",
-    advance: 9000,
-    gender: "girls",
-    distance: 0.4,
-    location: "Opp. Electrical Gate",
-    mapLink: "https://maps.app.goo.gl/tEJke8QmE8fYVQu67",
-    contact: "9497154582",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.22 },
-      { code: "atm", distance: 0.6 },
-      { code: "hospitals", distance: 0.6 },
-      { code: "groceries", distance: 0.35 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Angels+Beth",
-    images: [],
-    description: "Vacancy: 5"
-  },
-
-  {
-    id: "h10",
-    name: "PG",
-    rating: 0,
-    vacancies: 4,
-    price: 3500,
-    advance: 7000,
-    gender: "girls",
-    distance: 0.5,
-    location: "Opp. Electrical Gate",
-    mapLink: "https://www.google.com/maps?q=Electrical+Gate",
-    contact: "9446761911",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.22 },
-      { code: "atm", distance: 0.6 },
-      { code: "hospitals", distance: 0.6 },
-      { code: "groceries", distance: 0.35 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=PG",
-    images: [],
-    description: "Vacancy: 4"
-  },
-
-  {
-    id: "h11",
-    name: "Amala Gardens",
-    rating: 0,
-    vacancies: 12,
-    price: 3500,
-    advance: 7000,
-    gender: "boys",
-    distance: 0.5,
-    location: "Xylem",
-    mapLink: "https://maps.app.goo.gl/WrqB79gmXD13efXd9",
-    contact: "9847131533",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.09 },
-      { code: "atm", distance: 0.15 },
-      { code: "hospitals", distance: 1.5 },
-      { code: "groceries", distance: 0.1 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Amala+Gardens",
-    images: [],
-    description: "Vacancy: 12"
-  },
-
-  {
-    id: "h12",
-    name: "Pournami PG",
-    rating: 0,
-    vacancies: 11,
-    price: 3000,
-    advance: 9000,
-    gender: "boys",
-    distance: 0.6,
-    location: "Xylem",
-    mapLink: "https://www.google.com/maps?q=Xylem",
-    contact: "9446417167",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.09 },
-      { code: "atm", distance: 0.15 },
-      { code: "hospitals", distance: 1.5 },
-      { code: "groceries", distance: 0.1 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Pournami+PG",
-    images: [],
-    description: "Vacancy: 11"
-  },
-
-  {
-    id: "h13",
-    name: "Liwa Hostel",
-    rating: 0,
-    vacancies: 4,
-    price: 3000,
-    advance: 6000,
-    gender: "boys",
-    distance: 0.5,
-    location: "Xylem",
-    mapLink: "https://maps.app.goo.gl/QUgJfMQDSTU4JpBN8",
-    contact: "8129292731",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.09 },
-      { code: "atm", distance: 0.15 },
-      { code: "hospitals", distance: 1.5 },
-      { code: "groceries", distance: 0.1 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Liwa+Hostel",
-    images: [],
-    description: "Vacancy: 4"
-  },
-
-  {
-    id: "h14",
-    name: "Poga",
-    rating: 0,
-    vacancies: 5,
-    price: 2500,
-    advance: 5000,
-    gender: "boys",
-    distance: 0.6,
-    location: "Ambadi Nagar Lane 2",
-    mapLink: "https://www.google.com/maps?q=Ambadi+Nagar",
-    contact: "9207463580",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.1 },
-      { code: "atm", distance: 0.5 },
-      { code: "hospitals", distance: 0.3 },
-      { code: "groceries", distance: 0.25 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Poga",
-    images: [],
-    description: "Vacancy: 5"
-  },
-
-  {
-    id: "h15",
-    name: "Aradhana PG",
-    rating: 0,
-    vacancies: 8,
-    price: 3000,
-    advance: 5000,
-    gender: "boys",
-    distance: 0.65,
-    location: "Xylem",
-    mapLink: "https://maps.app.goo.gl/xxK8aAcrjZWHc9tZ9",
-    contact: "7994221662",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.15 },
-      { code: "atm", distance: 0.15 },
-      { code: "hospitals", distance: 1.0 },
-      { code: "groceries", distance: 0.075 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Aradhana+PG",
-    images: [],
-    description: "Vacancy: 8"
-  },
-
-  {
-    id: "h16",
-    name: "Ragdeep Residency",
-    rating: 0,
-    vacancies: 6,
-    price: 3500,
-    advance: 7000,
-    gender: "girls",
-    distance: 0.45,
-    location: "Xylem",
-    mapLink: "https://maps.app.goo.gl/76HrAwscTFo682EM9",
-    contact: "9495995937",
-    amenities: ["wifi", "food"],
-    nearbyFacilities: [
-      { code: "bus_stop", distance: 0.06 },
-      { code: "atm", distance: 0.15 },
-      { code: "hospitals", distance: 1.0 },
-      { code: "groceries", distance: 0.075 },
-      "restaurants"
-    ],
-    image: "https://placehold.co/600x400?text=Ragdeep+Residency",
-    images: [],
-    description: "Vacancy: 6"
-  },
-
-  {
-    id: "h17",
     name: "Guha Mens Hostel",
     rating: 0,
     vacancies: 10,
     price: 2750,
+    foodPrice: 3000, // 100/day * 30 days
     advance: 5000,
     gender: "boys",
     distance: 0.45,
@@ -433,7 +32,7 @@ const fallbackHostels = [
     nearbyFacilities: [
       { code: "bus_stop", distance: 0.16 },
       { code: "atm", distance: 0.28 },
-      { code: "hospitals", distance: 1.0 },
+      { code: "hospital", distance: 1.0 },
       { code: "groceries", distance: 0.15 },
       "restaurants"
     ],
@@ -441,24 +40,424 @@ const fallbackHostels = [
     images: [],
     description: "Vacancy: 10"
   },
-
+  {
+    id: "h2",
+    name: "Amala Gardens",
+    rating: 0,
+    vacancies: 12,
+    price: 3500,
+    foodPrice: 3750, // 125/day * 30 days
+    advance: 7000,
+    gender: "boys",
+    distance: 0.50,
+    location: "Xylem",
+    mapLink: "https://maps.app.goo.gl/WrqB79gmXD13efXd9",
+    contact: "9847131533",
+    amenities: ["wifi", "food"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.09 },
+      { code: "atm", distance: 0.15 },
+      { code: "hospital", distance: 1.5 },
+      { code: "groceries", distance: 0.10 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Amala+Gardens",
+    images: [],
+    description: "Vacancy: 12"
+  },
+  {
+    id: "h3",
+    name: "Aradhana PG",
+    rating: 0,
+    vacancies: 8,
+    price: 3000,
+    foodPrice: 3750, // 125/day * 30 days
+    advance: 5000,
+    gender: "boys",
+    distance: 0.65,
+    location: "Xylem",
+    mapLink: "https://maps.app.goo.gl/xxK8aAcrjZWHc9tZ9",
+    contact: "7994221662",
+    amenities: ["wifi", "food"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.15 },
+      { code: "atm", distance: 0.15 },
+      { code: "hospital", distance: 1.0 },
+      { code: "groceries", distance: 0.075 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Aradhana+PG",
+    images: [],
+    description: "Vacancy: 8"
+  },
+  {
+    id: "h4",
+    name: "Kurukshetra",
+    rating: 0,
+    vacancies: 5,
+    price: 3500,
+    foodPrice: 3900, // 130/day * 30 days
+    advance: 5000,
+    gender: "girls",
+    distance: 0.45,
+    location: "Opp. Ashokan's Chayakada",
+    mapLink: "",
+    contact: "",
+    amenities: ["wifi", "food"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.25 },
+      { code: "atm", distance: 0.45 },
+      { code: "hospital", distance: 1.2 },
+      { code: "groceries", distance: 0.30 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Kurukshetra",
+    images: [],
+    description: "Vacancy: 5"
+  },
+  {
+    id: "h5",
+    name: "Poga",
+    rating: 0,
+    vacancies: 5,
+    price: 2500,
+    foodPrice: 4500, // 150/day * 30 days
+    advance: 5000,
+    gender: "boys",
+    distance: 0.60,
+    location: "Ambadi Nagar lane 2",
+    mapLink: "",
+    contact: "9207463580",
+    amenities: ["wifi", "food"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.10 },
+      { code: "atm", distance: 0.50 },
+      { code: "hospital", distance: 0.30 },
+      { code: "groceries", distance: 0.25 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Poga",
+    images: [],
+    description: "Vacancy: 5"
+  },
+  {
+    id: "h6",
+    name: "Priyanka Nilayam",
+    rating: 0,
+    vacancies: 10,
+    price: 5000,
+    foodPrice: 3000, // 3000 monthly
+    advance: 5000,
+    gender: "boys",
+    distance: 0.12,
+    location: "Opp. Post Office Gate",
+    mapLink: "https://maps.app.goo.gl/Bx5gjTds5HcoY9467",
+    contact: "7025458339",
+    amenities: ["wifi", "housekeeping", "food"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.06 },
+      { code: "atm", distance: 0.05 },
+      { code: "hospital", distance: 1.0 },
+      { code: "groceries", distance: 0.075 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Priyanka+Nilayam",
+    images: [],
+    description: "Vacancy: 10"
+  },
+  {
+    id: "h7",
+    name: "Liwa Hostel",
+    rating: 0,
+    vacancies: 4,
+    price: 3000,
+    foodPrice: 3000, // 3000 monthly
+    advance: 6000,
+    gender: "boys",
+    distance: 0.50,
+    location: "Xylem",
+    mapLink: "https://maps.app.goo.gl/QUgJfMQDSTU4JpBN8",
+    contact: "8129292731",
+    amenities: ["wifi", "food"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.09 },
+      { code: "atm", distance: 0.15 },
+      { code: "hospital", distance: 1.5 },
+      { code: "groceries", distance: 0.10 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Liwa+Hostel",
+    images: [],
+    description: "Vacancy: 4"
+  },
+  {
+    id: "h8",
+    name: "Kalyani",
+    rating: 0,
+    vacancies: 8,
+    price: 7000,
+    foodPrice: 0, // food included
+    advance: 6000,
+    gender: "girls",
+    distance: 0.90,
+    location: "CRP Nagar",
+    mapLink: "",
+    contact: "",
+    amenities: ["wifi", "food"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.80 },
+      { code: "atm", distance: 0.75 },
+      { code: "hospital", distance: 1.0 },
+      { code: "groceries", distance: 0.305 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Kalyani",
+    images: [],
+    description: "Vacancy: 8"
+  },
+  {
+    id: "h9",
+    name: "Niva",
+    rating: 0,
+    vacancies: 5,
+    price: "6500-7000",
+    foodPrice: 0, // food included
+    advance: 5000,
+    gender: "girls",
+    distance: 0.85,
+    location: "Thiru Nagar",
+    mapLink: "",
+    contact: "",
+    amenities: ["wifi", "food"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.80 },
+      { code: "atm", distance: 0.75 },
+      { code: "hospital", distance: 1.0 },
+      { code: "groceries", distance: 0.305 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Niva",
+    images: [],
+    description: "Vacancy: 5"
+  },
+  {
+    id: "h10",
+    name: "Amritha",
+    rating: 0,
+    vacancies: 52,
+    price: 8000,
+    foodPrice: 0, // food included
+    advance: 10000,
+    gender: "girls",
+    distance: 0.65,
+    location: "Ambadi Nagar Lane 2",
+    mapLink: "https://maps.app.goo.gl/x5JXLEsKVxVy7Fig8",
+    contact: "9995740977",
+    amenities: ["wifi", "food"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.10 },
+      { code: "atm", distance: 0.50 },
+      { code: "hospital", distance: 0.30 },
+      { code: "groceries", distance: 0.25 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Amritha",
+    images: [],
+    description: "Vacancy: 52"
+  },
+  {
+    id: "h11",
+    name: "Ammus",
+    rating: 0,
+    vacancies: 20,
+    price: 7500,
+    foodPrice: 0, // food included
+    advance: 10000,
+    gender: "girls",
+    distance: 0.60,
+    location: "Opp. CRP Nagar",
+    mapLink: "https://maps.app.goo.gl/7WCtubTc7HxzbUQG6",
+    contact: "",
+    amenities: ["wifi", "food"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.80 },
+      { code: "atm", distance: 0.75 },
+      { code: "hospital", distance: 1.0 },
+      { code: "groceries", distance: 0.305 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Ammus",
+    images: [],
+    description: "Vacancy: 20"
+  },
+  {
+    id: "h12",
+    name: "Angels Beth",
+    rating: 0,
+    vacancies: 5,
+    price: "7500-9500",
+    foodPrice: 0, // food included
+    advance: 9000,
+    gender: "girls",
+    distance: 0.40,
+    location: "Opp. Electrical Gate",
+    mapLink: "https://maps.app.goo.gl/tEJke8QmE8fYVQu67",
+    contact: "9497154582",
+    amenities: ["wifi", "food"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.22 },
+      { code: "atm", distance: 0.60 },
+      { code: "hospital", distance: 0.60 },
+      { code: "groceries", distance: 0.35 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Angels+Beth",
+    images: [],
+    description: "Vacancy: 5"
+  },
+  {
+    id: "h13",
+    name: "Karthika",
+    rating: 0,
+    vacancies: 4,
+    price: 3000,
+    foodPrice: 0, // not included
+    advance: 5000,
+    gender: "boys",
+    distance: 0.80,
+    location: "Thiru Nagar",
+    mapLink: "",
+    contact: "",
+    amenities: ["wifi", "housekeeping"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.80 },
+      { code: "atm", distance: 0.75 },
+      { code: "hospital", distance: 1.0 },
+      { code: "groceries", distance: 0.305 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Karthika",
+    images: [],
+    description: "Vacancy: 4"
+  },
+  {
+    id: "h14",
+    name: "Swapnakoodu",
+    rating: 0,
+    vacancies: 2,
+    price: 4000,
+    foodPrice: 0, // not included
+    advance: 0, // no advance mentioned
+    gender: "girls",
+    distance: 0.95,
+    location: "CRP Nagar",
+    mapLink: "",
+    contact: "",
+    amenities: ["wifi", "housekeeping"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.80 },
+      { code: "atm", distance: 0.75 },
+      { code: "hospital", distance: 1.0 },
+      { code: "groceries", distance: 0.305 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Swapnakoodu",
+    images: [],
+    description: "Vacancy: 2"
+  },
+  {
+    id: "h15",
+    name: "PG",
+    rating: 0,
+    vacancies: 4,
+    price: 3500,
+    foodPrice: 0, // not included
+    advance: 7000,
+    gender: "girls",
+    distance: 0.50,
+    location: "Opp. Electrical Gate",
+    mapLink: "",
+    contact: "9446761911",
+    amenities: ["wifi", "housekeeping"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.22 },
+      { code: "atm", distance: 0.60 },
+      { code: "hospital", distance: 0.60 },
+      { code: "groceries", distance: 0.35 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=PG",
+    images: [],
+    description: "Vacancy: 4"
+  },
+  {
+    id: "h16",
+    name: "Pournami PG",
+    rating: 0,
+    vacancies: 11,
+    price: 3000,
+    foodPrice: 0, // not included
+    advance: 9000,
+    gender: "boys",
+    distance: 0.60,
+    location: "Xylem",
+    mapLink: "",
+    contact: "9446417167",
+    amenities: ["wifi", "housekeeping"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.09 },
+      { code: "atm", distance: 0.15 },
+      { code: "hospital", distance: 1.5 },
+      { code: "groceries", distance: 0.10 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Pournami+PG",
+    images: [],
+    description: "Vacancy: 11"
+  },
+  {
+    id: "h17",
+    name: "Ragdeep Residency",
+    rating: 0,
+    vacancies: 6,
+    price: 3500,
+    foodPrice: 0, // not included
+    advance: 7000,
+    gender: "girls",
+    distance: 0.45,
+    location: "Xylem",
+    mapLink: "https://maps.app.goo.gl/76HrAwscTFo682EM9",
+    contact: "9495995937",
+    amenities: ["wifi", "housekeeping"],
+    nearbyFacilities: [
+      { code: "bus_stop", distance: 0.06 },
+      { code: "atm", distance: 0.15 },
+      { code: "hospital", distance: 1.0 },
+      { code: "groceries", distance: 0.075 },
+      "restaurants"
+    ],
+    image: "https://placehold.co/600x400?text=Ragdeep+Residency",
+    images: [],
+    description: "Vacancy: 6"
+  },
   {
     id: "h18",
     name: "Shimsha",
     rating: 0,
     vacancies: 5,
     price: 6000,
+    foodPrice: 0, // not included
     advance: 6000,
     gender: "boys",
-    distance: 0.6,
+    distance: 0.60,
     location: "Opp. Ashokan Chayakada",
     mapLink: "https://maps.app.goo.gl/ectfSjZDrBMCw1RL9",
     contact: "9526552037",
-    amenities: ["wifi", "food"],
+    amenities: ["wifi", "housekeeping"],
     nearbyFacilities: [
-      { code: "bus_stop", distance: 0.3 },
+      { code: "bus_stop", distance: 0.30 },
       { code: "atm", distance: 0.55 },
-      { code: "hospitals", distance: 1.4 },
+      { code: "hospital", distance: 1.4 },
       { code: "groceries", distance: 0.32 },
       "restaurants"
     ],
@@ -466,74 +465,74 @@ const fallbackHostels = [
     images: [],
     description: "Vacancy: 5"
   },
-
   {
     id: "h19",
     name: "Shivasai",
     rating: 0,
     vacancies: 20,
     price: "2750-4250",
+    foodPrice: 0, // not included
     advance: 5000,
     gender: "boys",
     distance: 0.375,
     location: "Bhagat Singh Nagar",
     mapLink: "https://maps.app.goo.gl/FnxvYthaVv6UyLiN8",
     contact: "7510954538",
-    amenities: ["wifi", "food"],
+    amenities: ["wifi", "housekeeping"],
     nearbyFacilities: [
-      { code: "bus_stop", distance: 0.3 },
+      { code: "bus_stop", distance: 0.30 },
       { code: "atm", distance: 0.55 },
-      { code: "hospitals", distance: 1.4 },
-      { code: "groceries", distance: 0.1 },
+      { code: "hospital", distance: 1.4 },
+      { code: "groceries", distance: 0.10 },
       "restaurants"
     ],
     image: "https://placehold.co/600x400?text=Shivasai",
     images: [],
     description: "Vacancy: 20"
   },
-
   {
     id: "h20",
     name: "Murugans Hostel",
     rating: 0,
     vacancies: 25,
     price: "3500-4000",
+    foodPrice: 0, // not included
     advance: 10000,
     gender: "boys",
     distance: 0.45,
     location: "Bhagat Singh Nagar",
-    mapLink: "https://www.google.com/maps?q=Bhagat+Singh+Nagar",
+    mapLink: "",
     contact: "8281166260",
-    amenities: ["wifi", "food"],
+    amenities: ["wifi", "housekeeping"],
     nearbyFacilities: [
-      { code: "bus_stop", distance: 0.3 },
+      { code: "bus_stop", distance: 0.30 },
       { code: "atm", distance: 0.55 },
-      { code: "hospitals", distance: 1.4 },
-      { code: "groceries", distance: 0.1 },
+      { code: "hospital", distance: 1.4 },
+      { code: "groceries", distance: 0.10 },
       "restaurants"
     ],
     image: "https://placehold.co/600x400?text=Murugans+Hostel",
     images: [],
     description: "Vacancy: 25"
   },
-
   {
     id: "h21",
     name: "Gokulam PG",
     rating: 0,
     vacancies: 8,
     price: 5600,
+    foodPrice: 0, // not included
     advance: 5000,
     gender: "girls",
     distance: 0.55,
     location: "Xylem",
     mapLink: "https://maps.app.goo.gl/JSSBZmJkMvmvXdr17",
     contact: "9497688950",
-    amenities: ["wifi", "food"],
+    amenities: ["wifi", "housekeeping"],
     nearbyFacilities: [
       { code: "bus_stop", distance: 0.15 },
-      { code: "atm", distance: 0.2 },
-      { code: "hospitals", distance: 1.7 },
+      { code: "atm", distance: 0.20 },
+      { code: "hospital", distance: 1.7 },
       { code: "groceries", distance: 0.15 },
       "restaurants"
     ],
@@ -541,24 +540,24 @@ const fallbackHostels = [
     images: [],
     description: "Vacancy: 8"
   },
-
   {
     id: "h22",
     name: "Al Jazeera",
     rating: 0,
     vacancies: 46,
     price: "2000-2300",
+    foodPrice: 0, // not included
     advance: 5000,
     gender: "boys",
     distance: 0.05,
-    location: "College Front",
+    location: "College front",
     mapLink: "https://maps.app.goo.gl/Fb3G9yXCdG6oonsZA",
     contact: "9249731397",
-    amenities: ["wifi", "food"],
+    amenities: ["wifi", "housekeeping"],
     nearbyFacilities: [
       { code: "bus_stop", distance: 0.03 },
       { code: "atm", distance: 0.002 },
-      { code: "hospitals", distance: 1.0 },
+      { code: "hospital", distance: 1.0 },
       { code: "groceries", distance: 0.025 },
       "restaurants"
     ],
@@ -566,24 +565,24 @@ const fallbackHostels = [
     images: [],
     description: "Vacancy: 46"
   },
-
   {
     id: "h23",
     name: "Ideal",
     rating: 0,
     vacancies: 35,
     price: "4000-5000",
+    foodPrice: 0, // not included
     advance: 5000,
     gender: "boys",
     distance: 0.05,
-    location: "College Front",
+    location: "College front",
     mapLink: "https://maps.app.goo.gl/LcpAZSzxTN6PN82q9",
     contact: "9446566673",
-    amenities: ["wifi", "food"],
+    amenities: ["wifi", "housekeeping"],
     nearbyFacilities: [
       { code: "bus_stop", distance: 0.03 },
       { code: "atm", distance: 0.05 },
-      { code: "hospitals", distance: 1.0 },
+      { code: "hospital", distance: 1.0 },
       { code: "groceries", distance: 0.025 },
       "restaurants"
     ],
@@ -591,25 +590,25 @@ const fallbackHostels = [
     images: [],
     description: "Vacancy: 35"
   },
-
   {
     id: "h24",
     name: "Chuzhali",
     rating: 0,
     vacancies: 16,
-    price: "3000-4000", // 3000 for 4-sharing, 4000 for 2-sharing
+    price: "3000-4000", // Original format: "3000 - 4, 4000 - 2" rooms
+    foodPrice: 0, // not included
     advance: 10000,
     gender: "boys",
-    distance: 0.4,
+    distance: 0.40,
     location: "Bhagat Singh Nagar",
     mapLink: "https://maps.app.goo.gl/L5ZtepYrJWL1bvn39",
     contact: "9961005327",
-    amenities: ["wifi", "food"],
+    amenities: ["wifi", "housekeeping"],
     nearbyFacilities: [
-      { code: "bus_stop", distance: 0.3 },
+      { code: "bus_stop", distance: 0.30 },
       { code: "atm", distance: 0.55 },
-      { code: "hospitals", distance: 1.4 },
-      { code: "groceries", distance: 0.1 },
+      { code: "hospital", distance: 1.4 },
+      { code: "groceries", distance: 0.10 },
       "restaurants"
     ],
     image: "https://placehold.co/600x400?text=Chuzhali",
@@ -617,6 +616,8 @@ const fallbackHostels = [
     description: "Vacancy: 16"
   }
 ];
+
+
 
 /* Hostels array populated at runtime ----------------------------------*/
 let hostels = [];
@@ -749,6 +750,7 @@ function initIndexPage() {
 /* Hostels list page ---------------------------------------------------- */
 async function initHostelsPage() {
   const listEl = qs("#hostels-list");
+  const countEl = qs("#results-count");
   if (!listEl) return; // not on hostels page
 
   // Ensure hostels data is loaded
@@ -797,9 +799,14 @@ async function initHostelsPage() {
   }
 
   function renderList(items) {
+    // Update count display
+    if (countEl) countEl.textContent = `(${items.length})`;
+
     listEl.innerHTML = "";
     if (!items.length) {
       qs("#empty-state").hidden = false;
+      // Ensure count shows zero when no results
+      if (countEl) countEl.textContent = "(0)";
       return;
     }
     qs("#empty-state").hidden = true;
@@ -871,6 +878,28 @@ async function initDetailPage() {
       <button class="carousel-btn next" aria-label="Next image">&#10095;</button>
     </div>`;
 
+  /* ---------------- Food price / inclusion logic ------------------- */
+  const foodPriceKeys = [
+    "foodPrice",
+    "food_price",
+    "mealPrice",
+    "foodCost",
+    "food_cost",
+    "food_amount",
+  ];
+
+  let foodMarkup = "";
+  if (hostel.amenities && hostel.amenities.includes("food")) {
+    const explicitFoodPriceKey = foodPriceKeys.find((k) => hostel[k] != null && hostel[k] !== "");
+    const foodPriceVal = explicitFoodPriceKey ? hostel[explicitFoodPriceKey] : null;
+
+    if (foodPriceVal != null) {
+      foodMarkup = `\n      <br/>\n      <h3>Food:</h3>\n      <p class="card-food">${formatCurrency(foodPriceVal)} / month</p>`;
+    } else {
+      foodMarkup = `\n      <br/>\n      <h3>Food:</h3>\n      <p class="card-food">Included (rent money includes food as well.)</p>`;
+    }
+  }
+
   detailEl.innerHTML = `
     <h1 class="detail-title">${hostel.name}</h1>
     ${carouselMarkup}
@@ -882,6 +911,7 @@ async function initDetailPage() {
       <p class="card-advance">
       ${hostel.advance ? formatCurrency(hostel.advance) : "N/A"}
       </p>
+      ${foodMarkup}
     </section>
     <section class="neu-box detail-description">
       <h3>Vacancies:</h3>
@@ -893,7 +923,7 @@ async function initDetailPage() {
     <section class="neu-box detail-amenities">
       <h3>Amenities</h3>
       <ul class="amenities-list">
-        ${hostel.amenities.map((a) => `<li>${AMENITIES[a].name}</li>`).join("")}
+        ${hostel.amenities.map((a) => `<li>${(AMENITIES[a]?.name) || a}</li>`).join("")}
       </ul>
     </section>
     <section class="neu-box detail-contact">
@@ -932,6 +962,7 @@ async function initDetailPage() {
       <p>*Distance of hostels are measured from the main gate of the college.</p>
       <p>*Distance of nearby facilities are measured from the hostel.</p>      
       <p>*All information is provided by the hostel owners and maybe subject to change.</p>
+      <p>*There may be extra prices for Wi-Fi, Electricity, etc. Discuss with the hostel owner.</p>
     </section>
   `;
 
@@ -967,6 +998,98 @@ async function initDetailPage() {
 
     update();
   }
+
+  // Add this at the end of initDetailPage
+  initReviewsModule(hostel.id);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Rating & review helpers                                           */
+/* ------------------------------------------------------------------ */
+function renderStarIcons(container, value, interactive = false) {
+  // Use the selected value if present, otherwise use the passed value
+  let selected = +container.dataset.selected || value || 0;
+  container.innerHTML = "";
+  for (let i = 1; i <= 5; i++) {
+    const star = document.createElement("i");
+    star.className = `fa-star ${i <= selected ? "fa-solid" : "fa-regular"}`;
+    if (interactive) {
+      star.dataset.val = i;
+      star.addEventListener("mouseover", () => renderStarIcons(container, i, true));
+      star.addEventListener("mouseout", () => renderStarIcons(container, selected, true));
+      star.addEventListener("click", () => {
+        container.dataset.selected = i;
+        renderStarIcons(container, i, true);
+      });
+    }
+    container.appendChild(star);
+  }
+}
+
+async function initReviewsModule(hostelId) {
+  const box        = qs("#reviews-box");
+  const avgStarsEl = qs("#avg-stars");
+  const avgScoreEl = qs("#avg-score");
+  const countEl    = qs("#review-count");
+  const listEl     = qs("#reviews-list-box");
+  const form       = qs("#review-form");
+  const starInput  = qs("#star-input");
+  console.log('[initReviewsModule] box:', box, 'avgStarsEl:', avgStarsEl, 'avgScoreEl:', avgScoreEl, 'countEl:', countEl, 'listEl:', listEl, 'form:', form, 'starInput:', starInput);
+  if (!box || !avgStarsEl || !avgScoreEl || !countEl || !listEl || !form || !starInput) {
+    console.error('[initReviewsModule] One or more elements missing.');
+    return;
+  }
+  box.hidden = false;
+
+  async function loadReviews() {
+    const snap = await window.db
+      .collection("hostels").doc(hostelId)
+      .collection("reviews")  
+      .orderBy("date", "desc")
+      .get();
+    const reviews = snap.docs.map(d => d.data());
+    const avg = reviews.length ? reviews.reduce((s, r) => s + r.rating, 0) / reviews.length : 0;
+    renderStarIcons(avgStarsEl, Math.round(avg));
+    avgScoreEl.textContent = avg ? avg.toFixed(1) + "/5" : "No ratings yet";
+    countEl.textContent    = `(${reviews.length})`;
+    listEl.innerHTML = reviews.length ? reviews.map(r => `
+      <li>
+        <div class="review-head">
+          ${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}
+          <span class="date">${new Date(r.date).toLocaleDateString()}</span>
+        </div>
+        <p>${r.text}</p>
+      </li>`).join("") : '<li>No reviews yet.</li>';
+  }
+  loadReviews();
+  window.db.collection("hostels").doc(hostelId)
+    .collection("reviews")
+    .onSnapshot(loadReviews);
+  renderStarIcons(starInput, 0, true);
+  console.log('[initReviewsModule] Star icons rendered and listeners attached.');
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    console.log('[initReviewsModule] Form submit event fired.');
+    let rating = +starInput.dataset.selected;
+    if (!rating) {
+      // Fallback: count solid stars
+      const solidStars = starInput.querySelectorAll('.fa-solid');
+      rating = solidStars.length;
+    }
+    if (!rating) {
+      alert("Please click on the stars to select a rating");
+      return;
+    }
+    const text   = qs("#review-text").value.trim();
+    if (!rating) { alert("Please click on the stars to select a rating"); return; }
+    await window.db.collection("hostels").doc(hostelId)
+            .collection("reviews")
+            .add({ rating, text, date: Date.now() });
+    form.reset();
+    starInput.dataset.selected = 0;
+    renderStarIcons(starInput, 0, true);
+  });
+  console.log('[initReviewsModule] Form submit listener attached.');
 }
 
 /* Bootstrap all pages -------------------------------------------------- */

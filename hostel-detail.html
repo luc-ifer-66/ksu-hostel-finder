@@ -20,9 +20,9 @@
       <a href="index.html" class="logo"><img class="logo-img" src="images/ksu%20logo%20white.png" alt="KSU Logo" /><span>College Hostel Finder</span></a>
       <nav class="site-nav">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="hostels.html">Hostels</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="index.html"><i class="fas fa-house"></i> Home</a></li>
+          <li><a href="hostels.html"><i class="fas fa-bed"></i> Hostels</a></li>
+          <li><a href="about.html"><i class="fas fa-info-circle"></i> About us</a></li>
         </ul>
       </nav>
     </header>
@@ -30,6 +30,32 @@
     <main class="content">
       <button class="back-btn" onclick="history.back()">← Back</button>
       <article id="hostel-detail" class="hostel-detail"></article>
+
+      <!-- Review & Rating Section -->
+      <div class="review-flex-row" id="reviews-box" hidden>
+        <section class="neu-box review-section review-form-box">
+          <h3>Rating & Reviews</h3>
+          <p class="avg-rating">
+            <span id="avg-stars"></span>
+            <span id="avg-score"></span> · <span id="review-count"></span>
+          </p>
+          <form id="review-form">
+            <div class="star-input" id="star-input">
+              <i class="fa-regular fa-star" data-val="1"></i>
+              <i class="fa-regular fa-star" data-val="2"></i>
+              <i class="fa-regular fa-star" data-val="3"></i>
+              <i class="fa-regular fa-star" data-val="4"></i>
+              <i class="fa-regular fa-star" data-val="5"></i>
+            </div>
+            <textarea id="review-text" rows="3" placeholder="Share your experience…" required></textarea>
+            <button type="submit">Submit</button>
+          </form>
+        </section>
+        <section class="neu-box review-section review-list-box">
+          <h3>All Reviews</h3>
+          <ul id="reviews-list-box" class="reviews-list"></ul>
+        </section>
+      </div>
     </main>
 
     <section class="social-links" aria-label="Social Media Links">
@@ -42,6 +68,23 @@
       <p>© <span id="year"></span> KSU CET Hostel Finder</p>
     </footer>
 
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
+    <script>
+      // TODO: Replace with your Firebase config
+      const firebaseConfig = {
+        apiKey: "AIzaSyASiqX53xri6OjgyqW5bCn2QuX3v6R5BJw",
+        authDomain: "ksu-hostel-finder.firebaseapp.com",
+        projectId: "ksu-hostel-finder",
+        storageBucket: "ksu-hostel-finder.appspot.com",
+        messagingSenderId: "914154280606",
+        appId: "1:914154280606:web:99132de9555a4799228d8f",
+        measurementId: "G-L72D0XG4TM"
+      };
+      firebase.initializeApp(firebaseConfig);
+      window.db = firebase.firestore();
+    </script>
     <script defer src="script.js"></script>
   </body>
 </html> 
