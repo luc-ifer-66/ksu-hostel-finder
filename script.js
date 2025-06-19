@@ -417,7 +417,7 @@ const fallbackHostels = [
   },
   {
     id: "h17",
-    name: "Ragdeep Residency",
+    name: "Ragdeep",
     rating: 0,
     vacancies: 6,
     price: 3500,
@@ -436,7 +436,7 @@ const fallbackHostels = [
       { code: "groceries", distance: 0.075 },
       "restaurants"
     ],
-    image: "https://placehold.co/600x400?text=Ragdeep+Residency",
+    image: "https://placehold.co/600x400?text=Ragdeep",
     images: [],
     description: "Vacancy: 6"
   },
@@ -756,6 +756,26 @@ async function initHostelsPage() {
   // Ensure hostels data is loaded
   await fetchHostels();
 
+  // --- Fetch average ratings from Firestore if available ---
+  if (window.db) {
+    // For each hostel, fetch its reviews and compute average rating
+    Promise.all(hostels.map(async (h) => {
+      try {
+        const snap = await window.db.collection("hostels").doc(h.id).collection("reviews").get();
+        const reviews = snap.docs.map(d => d.data());
+        if (reviews.length) {
+          h.rating = reviews.reduce((sum, r) => sum + (r.rating || 0), 0) / reviews.length;
+        } else {
+          h.rating = 0;
+        }
+      } catch (e) {
+        // If error, leave fallback rating
+      }
+    })).then(() => {
+      applyFilters(); // re-render with updated ratings
+    });
+  }
+
   const params = new URLSearchParams(window.location.search);
   const query = (params.get("q") || "").toLowerCase();
   const amenityFilter = params.get("amenities")?.split(",").filter(Boolean) || [];
@@ -764,6 +784,36 @@ async function initHostelsPage() {
   // Map UI values (male/female) to dataset codes (boys/girls)
   const genderFilter = genderParam === "male" ? "boys" : genderParam === "female" ? "girls" : "";
   let sortOption = qs("#sort-select").value;
+
+  // --- Gender selector logic ---
+  const genderSelector = qs("#gender-selector-hostels");
+  if (genderSelector) {
+    // Set initial state from URL param
+    if (genderParam === "male") {
+      qs("#gender-male-h").checked = true;
+    } else if (genderParam === "female") {
+      qs("#gender-female-h").checked = true;
+    } else {
+      qs("#gender-male-h").checked = false;
+      qs("#gender-female-h").checked = false;
+    }
+    // Listen for changes
+    genderSelector.addEventListener("change", (e) => {
+      if (e.target.name === "gender-hostels") {
+        const newGender = e.target.value;
+        const newParams = new URLSearchParams(window.location.search);
+        if (newGender === "male" || newGender === "female") {
+          newParams.set("gender", newGender);
+        } else {
+          newParams.delete("gender");
+        }
+        // Always preserve sort selection
+        const sortVal = qs("#sort-select").value;
+        if (sortVal) newParams.set("sort", sortVal);
+        window.location.search = newParams.toString();
+      }
+    });
+  }
 
   function applyFilters() {
     let results = hostels.filter((h) => {
@@ -822,6 +872,23 @@ async function initHostelsPage() {
         ? '<span class="gender-badge female" title="Female hostel"><i class="fa-solid fa-person-dress"></i> Female</span>'
         : '';
 
+      // Rating markup
+      let ratingMarkup = '';
+      if (typeof h.rating === 'number' && h.rating > 0) {
+        const rounded = Math.round(h.rating * 10) / 10;
+        const fullStars = Math.floor(h.rating);
+        const halfStar = h.rating - fullStars >= 0.5;
+        const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+        ratingMarkup = `<div class='card-rating' title='${rounded} / 5'>` +
+          '<span class="stars">' +
+          '★'.repeat(fullStars) +
+          (halfStar ? '½' : '') +
+          '☆'.repeat(emptyStars) +
+          `</span> <span class='rating-num'>${rounded} / 5</span></div>`;
+      } else {
+        ratingMarkup = `<div class='card-rating card-rating-empty'>No ratings yet</div>`;
+      }
+
       card.innerHTML = `
         <img class="card-img" src="${h.image}" alt="${h.name}" />
         <div class="card-body">
@@ -829,6 +896,7 @@ async function initHostelsPage() {
             <h3 class="card-title">${h.name}</h3>
             ${genderBadge}
           </div>
+          ${ratingMarkup}
           <p class="card-meta">${formatDistance(h.distance) || "N/A"} from campus</p>
           <p class="card-price">${formatCurrency(h.price)} / month</p>
           <a class="card-link" href="hostel-detail.html?id=${h.id}">View Details</a>
@@ -841,8 +909,20 @@ async function initHostelsPage() {
   // Sort select listener
   qs("#sort-select").addEventListener("change", (e) => {
     sortOption = e.target.value;
+    // Update URL to preserve sort selection
+    const newParams = new URLSearchParams(window.location.search);
+    if (sortOption) newParams.set("sort", sortOption);
+    window.history.replaceState(null, '', '?' + newParams.toString());
     applyFilters();
   });
+
+  // On page load, set sort dropdown from URL param if present
+  const sortParam = params.get("sort");
+  if (sortParam) {
+    const sortSelect = qs("#sort-select");
+    if (sortSelect) sortSelect.value = sortParam;
+    sortOption = sortParam;
+  }
 
   // initial render
   applyFilters();

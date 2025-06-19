@@ -36,6 +36,24 @@
             <option value="rating">Rating</option>
           </select>
         </div>
+        <!-- Gender Selector -->
+        <div class="gender-selector-wrapper">
+          <div class="glass-radio-group-vertical gender-radio-group" id="gender-selector-hostels">
+            <input type="radio" id="gender-male-h" name="gender-hostels" value="male" />
+            <label for="gender-male-h">
+              <span class="radio-indicator"><span class="checkmark">✔</span></span>
+              <span class="label-text"><i class="fa-solid fa-person"></i> Male</span>
+            </label>
+
+            <input type="radio" id="gender-female-h" name="gender-hostels" value="female" />
+            <label for="gender-female-h">
+              <span class="radio-indicator"><span class="checkmark">✔</span></span>
+              <span class="label-text"><i class="fa-solid fa-person-dress"></i> Female</span>
+            </label>
+
+            <div class="glass-glider-vertical"></div>
+          </div>
+        </div>
       </section>
 
       <section id="hostels-list" class="hostels-list"></section>
@@ -50,8 +68,25 @@
 
     <footer class="site-footer">
       <p>© <span id="year"></span> KSU CET Hostel Finder</p>
+      <p>in collaboration with <a href="https://flinkwebs.netlify.app" target="_blank" rel="noopener" class="flink-link">Flink</a></p>
     </footer>
 
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyASiqX53xri6OjgyqW5bCn2QuX3v6R5BJw",
+        authDomain: "ksu-hostel-finder.firebaseapp.com",
+        projectId: "ksu-hostel-finder",
+        storageBucket: "ksu-hostel-finder.appspot.com",
+        messagingSenderId: "914154280606",
+        appId: "1:914154280606:web:99132de9555a4799228d8f",
+        measurementId: "G-L72D0XG4TM"
+      };
+      firebase.initializeApp(firebaseConfig);
+      window.db = firebase.firestore();
+    </script>
     <script defer src="script.js"></script>
   </body>
 </html> 
