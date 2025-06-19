@@ -815,10 +815,20 @@ async function initHostelsPage() {
       const card = document.createElement("article");
       card.className = "card";
 
+      // Gender badge markup
+      const genderBadge = h.gender === "boys"
+        ? '<span class="gender-badge male" title="Male hostel"><i class="fa-solid fa-person"></i> Male</span>'
+        : h.gender === "girls"
+        ? '<span class="gender-badge female" title="Female hostel"><i class="fa-solid fa-person-dress"></i> Female</span>'
+        : '';
+
       card.innerHTML = `
         <img class="card-img" src="${h.image}" alt="${h.name}" />
         <div class="card-body">
-          <h3 class="card-title">${h.name}</h3>
+          <div class="card-title-row">
+            <h3 class="card-title">${h.name}</h3>
+            ${genderBadge}
+          </div>
           <p class="card-meta">${formatDistance(h.distance) || "N/A"} from campus</p>
           <p class="card-price">${formatCurrency(h.price)} / month</p>
           <a class="card-link" href="hostel-detail.html?id=${h.id}">View Details</a>
@@ -901,7 +911,13 @@ async function initDetailPage() {
   }
 
   detailEl.innerHTML = `
-    <h1 class="detail-title">${hostel.name}</h1>
+    <h1 class="detail-title">${hostel.name}
+      ${hostel.gender === "boys"
+        ? '<span class="gender-badge male" title="Male hostel"><i class="fa-solid fa-person"></i> Male</span>'
+        : hostel.gender === "girls"
+        ? '<span class="gender-badge female" title="Female hostel"><i class="fa-solid fa-person-dress"></i> Female</span>'
+        : ''}
+    </h1>
     ${carouselMarkup}
     <section class="neu-box detail-overview">
       <h3>Rent:</h3>
