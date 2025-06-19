@@ -1193,4 +1193,31 @@ document.addEventListener("DOMContentLoaded", () => {
   initIndexPage();
   initHostelsPage();
   initDetailPage();
-}); 
+});
+
+// Hamburger menu logic
+(function initHamburgerMenu() {
+  function qs(sel, scope=document){return scope.querySelector(sel);}
+  function qsa(sel, scope=document){return Array.from(scope.querySelectorAll(sel));}
+  document.addEventListener('DOMContentLoaded', function() {
+    const header = qs('.site-header');
+    if (!header) return;
+    let nav = qs('.site-nav', header);
+    if (!nav) return;
+    const hamburger = qs('.hamburger', header);
+    if (!hamburger) return;
+    function toggleNav() {
+      nav.classList.toggle('open');
+      document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+    }
+    hamburger.addEventListener('click', toggleNav);
+    // Close nav on ESC
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && nav.classList.contains('open')) toggleNav();
+    });
+    // Close nav on nav link click (for single-page feel)
+    qsa('.site-nav a', nav).forEach(a => a.addEventListener('click', function(){
+      if (nav.classList.contains('open')) toggleNav();
+    }));
+  });
+})(); 

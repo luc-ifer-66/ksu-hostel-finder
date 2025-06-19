@@ -545,13 +545,13 @@ a { color: inherit; text-decoration: none; }
 /* ── Mobile optimisation ────────────────────────────────────────────── */
 @media (max-width: 639px) {
   /* Layout */
-  .site-header { flex-direction: column; gap: 0.75rem; align-items: center; }
-  .site-nav ul {
+  /* .site-header { flex-direction: column; gap: 0.75rem; align-items: center; } */
+  /* .site-nav ul {
     flex-direction: row;
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
-  }
+  } */
 
   .content      { padding: 1rem; }
   .page-title   { font-size: 1.5rem; }
@@ -578,6 +578,70 @@ a { color: inherit; text-decoration: none; }
 
   /* Carousel buttons easier to tap */
   .carousel-btn { font-size: 2.5rem; padding: 0 0.75rem; }
+}
+
+/* Hamburger menu styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+.hamburger span {
+  display: block;
+  height: 0.3rem;
+  width: 2rem;
+  margin: 0.25rem 0;
+  background: var(--text-color);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+@media (max-width: 900px) {
+  .hamburger { display: flex; }
+  .site-nav {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh;
+    width: 70vw;
+    max-width: 320px;
+    background: var(--toolbar-bg);
+    box-shadow: -2px 0 16px #0008;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1.5rem;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(.4,2,.6,1);
+    z-index: 1000;
+    display: flex;
+  }
+  .site-nav.open {
+    transform: translateX(0);
+  }
+  .site-nav ul {
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+  }
+  .site-nav .close-nav {
+    display: block;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--text-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    align-self: flex-end;
+  }
+}
+@media (min-width: 901px) {
+  .site-nav { position: static !important; transform: none !important; height: auto !important; width: auto !important; background: none !important; box-shadow: none !important; flex-direction: row !important; align-items: center !important; padding: 0 !important; }
+  .site-nav ul { flex-direction: row !important; gap: 1.5rem !important; }
+  .hamburger { display: none !important; }
 }
 
 /* --- reviews (site-matching neumorphic/glass) -------------------- */
