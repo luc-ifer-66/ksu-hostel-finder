@@ -1193,7 +1193,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initIndexPage();
   initHostelsPage();
   initDetailPage();
-});
+}); 
 
 // Hamburger menu logic
 (function initHamburgerMenu() {

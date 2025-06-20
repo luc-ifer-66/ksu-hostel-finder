@@ -280,7 +280,9 @@ a { color: inherit; text-decoration: none; }
   border: 0px solid rgba(255, 255, 255, 0.15);
   border-radius: 1rem;
   backdrop-filter: blur(16px);
-  width: 275px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
   overflow: hidden;
   gap: 0.5rem;
 }
@@ -578,6 +580,12 @@ a { color: inherit; text-decoration: none; }
 
   /* Carousel buttons easier to tap */
   .carousel-btn { font-size: 2.5rem; padding: 0 0.75rem; }
+
+  /* Gender selector mobile adjustments */
+  .glass-radio-group-vertical {
+    max-width: 100%;
+    padding: 2rem 1.5rem;
+  }
 }
 
 /* Hamburger menu styles */
@@ -649,55 +657,99 @@ a { color: inherit; text-decoration: none; }
   background: var(--card-glass);
   border-radius: var(--border-radius);
   box-shadow: 4px 4px 10px rgba(0,0,0,0.4), -4px -4px 10px rgba(255,255,255,0.05);
-  padding: 2.2rem 2.5rem 2.2rem 2.5rem;
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 2.2rem 2.5rem;
+  margin-bottom: 1rem;
   color: var(--text-color);
   backdrop-filter: blur(var(--card-glass-blur));
   border: 1.5px solid var(--card-border);
+  width: 100%;
 }
+
 .review-section h3 {
-  font-size: 1.35rem;
-  margin-bottom: 0.7rem;
-  letter-spacing: 0.01em;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
   color: var(--accent-color);
 }
+
 .avg-rating {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  font-size: 1.1rem;
+  gap: 1rem;
+  font-size: 1.2rem;
   color: var(--accent-color);
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
+  justify-content: space-between;
+  width: 100%;
 }
+
+#avg-stars {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+#avg-stars i {
+  font-size: 1.3rem;
+  color: var(--accent-color);
+  margin-right: 0;
+  text-shadow: 0 1px 2px #0ff2ff33;
+}
+
+@media (max-width: 600px) {
+  .review-section {
+    padding: 1.5rem;
+  }
+  
+  .avg-rating {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1rem;
+  }
+  
+  .reviews-list li {
+    padding: 1rem;
+  }
+
+  #review-count {
+    font-size: 0.9rem;
+  }
+}
+
+#review-count {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reviews-list li {
+  background: rgba(255,255,255,0.07);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 0;
+  width: 100%;
+  box-shadow: 0 1px 4px 0 rgba(31,38,135,0.07);
+  transition: box-shadow 0.2s, background 0.2s;
+  color: var(--text-color);
+}
+
+.reviews-list li:hover {
+  box-shadow: 0 2px 12px 0 var(--accent-color);
+  background: rgba(6,182,212,0.10);
+}
+
 #avg-stars i {
   font-size: 1.3rem;
   color: var(--accent-color);
   margin-right: 0.1rem;
   text-shadow: 0 1px 2px #0ff2ff33;
-}
-#review-count {
-  color: var(--text-muted);
-  font-size: 1rem;
-}
-.reviews-list {
-  margin-bottom: 1.5rem;
-}
-.reviews-list li {
-  background: rgba(255,255,255,0.07);
-  border-radius: 0.7rem;
-  box-shadow: 0 1px 4px 0 rgba(31,38,135,0.07);
-  padding: 1rem 1.2rem 0.7rem 1.2rem;
-  margin-bottom: 1.1rem;
-  transition: box-shadow 0.2s, background 0.2s;
-  color: var(--text-color);
-}
-.reviews-list li:hover {
-  box-shadow: 0 2px 12px 0 var(--accent-color);
-  background: rgba(6,182,212,0.10);
 }
 .review-head {
   font-size: 1.05rem;
@@ -777,30 +829,33 @@ a { color: inherit; text-decoration: none; }
 .review-flex-row {
   display: flex;
   gap: 2.5rem;
-  max-width: 1200px;
+  max-width: 100%;
   margin: 2.5rem auto;
   align-items: flex-start;
 }
 .review-form-box {
-  flex: 1 1 320px;
+  flex: 1 1 40%;
   min-width: 320px;
-  max-width: 400px;
-  padding-right: 1.5rem;
+  max-width: none;
+  padding: 2rem;
 }
 .review-list-box {
-  flex: 2 1 0%;
+  flex: 1 1 60%;
   min-width: 0;
-  padding-left: 1.5rem;
-  max-width: 100%;
+  padding: 2rem;
+  max-width: none;
 }
 @media (max-width: 900px) {
   .review-flex-row {
     flex-direction: column;
     gap: 1.5rem;
+    margin: 1.5rem auto;
   }
-  .review-form-box, .review-list-box {
+  .review-form-box, 
+  .review-list-box {
+    width: 100%;
     max-width: 100%;
-    padding: 0;
+    padding: 1.5rem;
   }
 }
 .review-list-box h3 {
@@ -849,17 +904,20 @@ a { color: inherit; text-decoration: none; }
   margin: 1.2em 0 1.2em 0;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 #gender-selector-hostels.glass-radio-group-vertical {
   flex-direction: row;
   gap: 2em;
-  width: auto;
+  width: 100%;
+  max-width: 100%;
   min-width: 260px;
   background: linear-gradient(135deg, #23272f 60%, #444851 100%); /* Default grey */
   box-shadow: 0 4px 24px #00000033;
   border-radius: 1.5em;
-  padding: 0.5em 1.5em;
+  padding: 1.5rem 2rem;
   align-items: center;
+  justify-content: center;
   transition: background 0.4s;
 }
 #gender-selector-hostels:has(#gender-male-h:checked) {
@@ -888,28 +946,23 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   margin-right: 0.5em;
 }
-#gender-selector-hostels input[type="radio"] {
-  display: none;
-}
-#gender-selector-hostels input[type="radio"]:checked + label .radio-indicator {
-  background: #ec4899;
-  border-color: #fff;
-}
-#gender-selector-hostels input[type="radio"]:checked + label .checkmark {
-  opacity: 1;
-  color: #fff;
-  font-size: 1em;
-  transform: scale(1.1);
-}
-#gender-selector-hostels .checkmark {
-  opacity: 0;
-  transition: opacity 0.2s, transform 0.2s;
+#gender-selector-hostels label {
+  min-width: 150px;
+  justify-content: center;
+  padding: 0.8rem 1.5rem;
 }
 @media (max-width: 600px) {
   #gender-selector-hostels.glass-radio-group-vertical {
     flex-direction: column;
-    gap: 0.7em;
-    padding: 0.7em 0.5em;
+    gap: 1em;
+    padding: 1.5rem;
+    width: 100%;
+    margin: 0;
+  }
+  #gender-selector-hostels label {
+    min-width: 200px;
+    width: 100%;
+    padding: 0.8rem;
   }
 }
 
@@ -955,4 +1008,22 @@ a { color: inherit; text-decoration: none; }
 .flink-link:hover {
   color: var(--primary-color);
   text-decoration: underline;
+}
+
+#gender-selector-hostels input[type="radio"] {
+  display: none;
+}
+#gender-selector-hostels input[type="radio"]:checked + label .radio-indicator {
+  background: #ec4899;
+  border-color: #fff;
+}
+#gender-selector-hostels input[type="radio"]:checked + label .checkmark {
+  opacity: 1;
+  color: #fff;
+  font-size: 1em;
+  transform: scale(1.1);
+}
+#gender-selector-hostels .checkmark {
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
 }
