@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In | KSU CET Hostel Finder</title>
+
+    <!-- Site styles - Load before Clerk to ensure our styles take precedence -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" referrerpolicy="no-referrer" />
+
+    <!-- Clerk SDK -->
+    <script
+      async
+      crossorigin="anonymous"
+      data-clerk-publishable-key="pk_test_bmVhcmJ5LXN3aWZ0LTU4LmNsZXJrLmFjY291bnRzLmRldiQ"
+      src="https://nearby-swift-58.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"
+      type="text/javascript"
+    ></script>
+
+    <!-- Auth Check -->
+    <script>
+      async function initAuth() {
+        try {
+          // Wait for Clerk to load
+          if (!window.Clerk) {
+            await new Promise((resolve) => {
+              window.addEventListener('load', () => {
+                if (window.Clerk) resolve();
+              });
+            });
+          }
+
+          await Clerk.load({
+            appearance: {
+              baseTheme: 'dark',
+              variables: {
+                colorPrimary: '#2563eb',
+                colorBackground: 'transparent',
+                colorText: '#f8fafc',
+                colorTextSecondary: '#cbd5e1',
+                colorInputBackground: 'rgba(255, 255, 255, 0.05)',
+                colorInputText: '#f8fafc',
+                colorSuccess: '#22c55e',
+                colorDanger: '#ef4444'
+              },
+              elements: {
+                formButtonPrimary: {
+                  fontSize: '1rem',
+                  fontWeight: '500',
+                  padding: '0.75rem 1.5rem',
+                  backgroundColor: 'var(--primary-color)',
+                  '&:hover': {
+                    backgroundColor: 'var(--accent-color)'
+                  }
+                },
+                card: {
+                  border: 'none',
+                  boxShadow: 'none',
+                  backgroundColor: 'transparent'
+                }
+              }
+            }
+          });
+
+          // If already signed in, redirect to home
+          if (Clerk.user) {
+            const currentPath = window.location.pathname;
+            const redirectPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1) + 'index.html';
+            window.location.href = redirectPath;
+            return;
+          }
+
+          // Mount sign-in component
+          const signInDiv = document.getElementById('sign-in');
+          if (signInDiv) {
+            await Clerk.mountSignIn(signInDiv);
+          }
+
+          // Add auth state change listener
+          Clerk.addListener(({ user }) => {
+            if (user) {
+              const currentPath = window.location.pathname;
+              const redirectPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1) + 'index.html';
+              window.location.href = redirectPath;
+            }
+          });
+
+        } catch (error) {
+          console.error('Failed to initialize auth:', error);
+        }
+      }
+
+      // Initialize auth immediately
+      initAuth();
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="index.html" class="logo">
+        <img class="logo-img" src="images/ksu%20logo%20white.png" alt="KSU Logo" />
+        <span>KSU CET Hostel Finder</span>
+      </a>
+    </header>
+
+    <main class="content">
+      <div class="auth-container">
+        <div class="auth-box">
+          <h1>Welcome Back</h1>
+          <p class="auth-subtitle">Sign in to continue to KSU CET Hostel Finder</p>
+          <div id="sign-in"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> KSU CET Hostel Finder</p>
+      <p>in collaboration with <a href="https://flinkwebs.netlify.app" target="_blank" rel="noopener" class="flink-link">Flink</a></p>
+    </footer>
+
+    <script>
+      // Update year in footer
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html> 

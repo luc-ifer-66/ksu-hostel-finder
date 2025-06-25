@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | KSU CET Hostel Finder</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Site styles -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" referrerpolicy="no-referrer" />
+
+    <!-- Clerk SDK -->
+    <script
+      async
+      crossorigin="anonymous"
+      data-clerk-publishable-key="pk_test_bmVhcmJ5LXN3aWZ0LTU4LmNsZXJrLmFjY291bnRzLmRldiQ"
+      src="https://nearby-swift-58.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"
+      type="text/javascript"
+    ></script>
+
+    <!-- Auth Check -->
+    <script>
+      // Prevent any content from showing until auth is checked
+      document.documentElement.style.display = 'none';
+    </script>
+  </head>
+  <body>
+    <!-- ── Shared header ───────────────────────────── -->
+    <header class="site-header">
+      <a href="index.html" class="logo">
+        <img class="logo-img" src="images/ksu%20logo%20white.png" alt="KSU Logo" />
+        <span>KSU CET Hostel Finder</span>
+      </a>
+      <button class="hamburger" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html"><i class="fas fa-house"></i> Home</a></li>
+          <li><a href="hostels.html"><i class="fas fa-bed"></i> Hostels</a></li>
+          <li><a href="about.html" aria-current="page"><i class="fas fa-info-circle"></i> About us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ── Main content ────────────────────────────── -->
+    <main class="content">
+      <h1 class="page-title">About Us</h1>
+
+      <section class="neu-box" style="max-width: 50rem; margin-inline: auto;">
+        <h2>Our Mission</h2>
+        <p>
+          KSU CET Hostel Finder was created by students, for students.  
+          Our goal is simple: make it effortless to discover safe, affordable,
+          and convenient accommodation near <strong>College of Engineering, Trivandrum</strong>.
+        </p>
+        <br />
+        <h2>What We Do</h2>
+        <ol class="amenities-list">
+          <li>Curate up-to-date hostel listings with verified details.</li>
+          <li>Offer powerful filters for distance, budget, amenities, and gender.</li>
+          <li>Transparent pricing as given by the hostels.</li>
+        </ol>
+        <br />
+        <h2>Our other websites</h2>
+        <a href="https://ksucetsac2024.netlify.app" target="_blank" rel="noopener">
+          <button type="button" class="external-site-btn">Visit KSU Student Assist Cell Website</button>
+        </a>
+        <p>‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎‎‎To get resources for studies.</p>
+      </section>
+    </main>
+
+    <section class="social-links" aria-label="Social Media Links">
+      <div class="social-popup">
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <div class="popup-content">
+          <a href="https://www.instagram.com/studentassistcell_cet/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>KSU Student Assist Cell</a>
+          <a href="https://www.instagram.com/ksu.cet/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>KSU CET</a>
+        </div>
+      </div>
+      <a href="https://chat.whatsapp.com/JYDuhIWcdQLH2mud9LkkuU" aria-label="Whatsapp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="mailto:ksucetsac2024@gmail.com" aria-label="Gmail" target="_blank" rel="noopener"><i class="fa-solid fa-envelope"></i></a>
+    </section>
+
+    <!-- ── Shared footer ───────────────────────────── -->
+    <footer class="site-footer">
+      <p>© <span id="year"></span> KSU CET Hostel Finder</p>
+      <p>in collaboration with <a href="https://flinkwebs.netlify.app" target="_blank" rel="noopener" class="flink-link">Flink</a></p>
+    </footer>
+
+    <!-- Auth check script -->
+    <script src="auth-check.js"></script>
+
+    <!-- Shared JS -->
+    <script defer src="script.js"></script>
+  </body>
+</html> 
