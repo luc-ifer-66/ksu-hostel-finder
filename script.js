@@ -1067,9 +1067,9 @@ async function initDetailPage() {
         <button class='carousel-btn prev' aria-label='Previous image'>&#10094;</button>
         <div class='carousel-track'>
           ${imagesArr.map((url, idx) => `<img class='detail-img' src='${url}' alt='${hostel.name} image ${idx+1}' data-idx='${idx}' style='display:${idx === 0 ? 'block' : 'none'};margin-top:1rem;'/>`).join("")}
-        </div>
+      </div>
         <button class='carousel-btn next' aria-label='Next image'>&#10095;</button>
-      </div>`;
+    </div>`;
   } else {
     imagesMarkup = imagesArr.map((url, idx) => `<img class='detail-img' src='${url}' alt='${hostel.name} image ${idx+1}' style='margin-top:1rem;'/>`).join("");
   }
@@ -1119,7 +1119,7 @@ async function initDetailPage() {
       <div class="detail-vacancy neu-box">${vacancyMarkup}</div>
       <div class="detail-amenities neu-box">${amenitiesMarkup}</div>
       <div class="detail-facilities neu-box">${facilitiesMarkup}</div>
-    </div>
+      </div>
   `;
 
   // Carousel logic for images
@@ -1156,7 +1156,7 @@ function renderStarIcons(container, value, interactive = false) {
   for (let i = 1; i <= 5; i++) {
     const star = document.createElement("i");
     star.className = `fa-star ${i <= selected ? "fa-solid" : "fa-regular"}`;
-    star.dataset.val = i;
+      star.dataset.val = i;
     container.appendChild(star);
   }
 }

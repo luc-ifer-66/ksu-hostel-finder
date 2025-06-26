@@ -63,32 +63,27 @@
             <input type="search" id="search" name="q" placeholder="Enter hostel name..." class="neu-input wide-search" />
           </div>
 
-          <!-- TITLES AND CONTROLS IN SEPARATE ROWS -->
+          <!-- FILTERS: Each label and control grouped together -->
           <div class="filter-row" style="grid-column: 1 / -1;">
-            <div class="filter-row-labels">
-              <div class="filter-label">Gender Preference</div>
-              <div class="filter-label">Maximum Distance</div>
-              <div class="filter-label">Required Amenities</div>
+            <div class="filter-group">
+              <label for="gender">Gender Preference</label>
+              <select id="gender" name="gender">
+                <option value="">Any Gender</option>
+                <option value="boys">Male Hostels</option>
+                <option value="girls">Female Hostels</option>
+              </select>
             </div>
-            <div class="filter-row-divider"></div>
-            <div class="filter-row-controls">
-              <div class="filter-group">
-                <select id="gender" name="gender">
-                  <option value="">Any Gender</option>
-                  <option value="boys">Male Hostels</option>
-                  <option value="girls">Female Hostels</option>
-                </select>
+            <div class="filter-group">
+              <label for="distance">Maximum Distance</label>
+              <div class="range-group">
+                <input type="range" id="distance" name="distance" min="0" max="2" step="0.1" value="2" />
+                <output for="distance">2 km</output>
               </div>
-              <div class="filter-group">
-                <div class="range-group">
-                  <input type="range" id="distance" name="distance" min="0" max="2" step="0.1" value="2" />
-                  <output for="distance">2 km</output>
-                </div>
-              </div>
-              <div class="filter-group">
-                <div id="amenity-filters" class="amenity-filters">
-                  <!-- Amenities will be populated by JavaScript -->
-                </div>
+            </div>
+            <div class="filter-group">
+              <label>Required Amenities</label>
+              <div id="amenity-filters" class="amenity-filters">
+                <!-- Amenities will be populated by JavaScript -->
               </div>
             </div>
           </div>
