@@ -1287,7 +1287,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initDetailPage();
 }); 
 
-// Hamburger menu logic
+// Hamburger menu logic (unified, accessible)
 (function initHamburgerMenu() {
   function qs(sel, scope=document){return scope.querySelector(sel);}
   function qsa(sel, scope=document){return Array.from(scope.querySelectorAll(sel));}
@@ -1298,19 +1298,45 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!nav) return;
     const hamburger = qs('.hamburger', header);
     if (!hamburger) return;
+    const overlay = qs('.mobile-nav-overlay') || document.querySelector('.mobile-nav-overlay');
+    function setAria() {
+      hamburger.setAttribute('aria-expanded', nav.classList.contains('open') ? 'true' : 'false');
+      hamburger.setAttribute('aria-controls', 'main-nav');
+      nav.setAttribute('tabindex', '-1');
+    }
+    function openNav() {
+      nav.classList.add('open');
+      hamburger.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      setAria();
+      if (overlay) overlay.style.display = 'block';
+    }
+    function closeNav() {
+      nav.classList.remove('open');
+      hamburger.classList.remove('active');
+      document.body.style.overflow = '';
+      setAria();
+      if (overlay) overlay.style.display = 'none';
+    }
     function toggleNav() {
-      nav.classList.toggle('open');
-      document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+      if (nav.classList.contains('open')) {
+        closeNav();
+      } else {
+        openNav();
+      }
     }
     hamburger.addEventListener('click', toggleNav);
+    setAria();
     // Close nav on ESC
     document.addEventListener('keydown', function(e){
-      if (e.key === 'Escape' && nav.classList.contains('open')) toggleNav();
+      if (e.key === 'Escape' && nav.classList.contains('open')) closeNav();
     });
     // Close nav on nav link click (for single-page feel)
     qsa('.site-nav a', nav).forEach(a => a.addEventListener('click', function(){
-      if (nav.classList.contains('open')) toggleNav();
+      if (nav.classList.contains('open')) closeNav();
     }));
+    // Close nav on overlay click
+    if (overlay) overlay.addEventListener('click', closeNav);
   });
 })(); 
 

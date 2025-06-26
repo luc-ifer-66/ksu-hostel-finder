@@ -1890,11 +1890,11 @@ output {
     max-width: 100vw !important;
     width: 100vw !important;
     box-sizing: border-box;
-    padding-left: 0.2rem !important;
-    padding-right: 0.2rem !important;
+    padding-left: 0.7rem !important;
+    padding-right: 0.7rem !important;
   }
   .search-filters {
-    padding: 0.7rem 0.2rem;
+    padding: 0.7rem 0.7rem;
     gap: 1rem;
   }
   .filter-row {
@@ -1940,7 +1940,7 @@ output {
     margin-bottom: 1rem;
   }
   .hostels-controls {
-    padding: 0.7rem 0.2rem;
+    padding: 0.7rem 0.7rem;
     gap: 0.7rem;
     flex-direction: column;
     align-items: stretch;
@@ -1978,7 +1978,7 @@ output {
     padding: 0.5rem 0.7rem;
   }
   .auth-box {
-    padding: 1rem 0.2rem;
+    padding: 1rem 0.7rem;
     max-width: 98vw;
   }
   .social-links {
@@ -1991,7 +1991,7 @@ output {
     font-size: 1.1rem;
   }
   .site-footer {
-    padding: 1rem 0.2rem;
+    padding: 1rem 0.7rem;
     font-size: 0.95rem;
   }
   /* About page: stack neu-boxes vertically with spacing */
@@ -2054,4 +2054,15 @@ output {
   .page-title {
     font-size: 1rem;
   }
+}
+
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 999;
+}
+.site-nav.open ~ .mobile-nav-overlay {
+  display: block;
 }
