@@ -8,7 +8,8 @@ const AMENITIES = {
 const FACILITIES = {
   bus_stop: { name: "Bus Stop" },
   atm: { name: "ATM" },
-  hospitals: { name: "Hospitals" },
+  hospital: { name: "Hospital" },
+  hospitals: { name: "Hospital" },
   groceries: { name: "Groceries" },
   restaurant: { name: "Restaurant" },
 };
@@ -1053,158 +1054,95 @@ async function initDetailPage() {
     return;
   }
 
-  /* NEW: make sure "restaurant" is always present ------------------- */
-  const hasRestaurant = hostel.nearbyFacilities.some((f) => {
-    const code = typeof f === "string" ? f : f.code;
-    return code === "restaurant" || code === "restaurants";
-  });
-  if (!hasRestaurant) {
-    hostel.nearbyFacilities.push("restaurant");
-  }
+  // Add 'female' class to title if hostel is for girls
+  const titleClass = hostel.gender === "girls" ? "detail-title female" : "detail-title";
 
+  // Images markup (carousel or single image)
   const imagesArr = hostel.images && hostel.images.length ? hostel.images : [hostel.image];
-  const carouselMarkup = `
-    <div class="detail-carousel">
-      <button class="carousel-btn prev" aria-label="Previous image">&#10094;</button>
-      <div class="carousel-track">
-        ${imagesArr
-          .map(
-            (url, idx) =>
-              `<img class="detail-img" src="${url}" alt="${hostel.name} image ${idx + 1}" />`
-          )
-          .join("")}
-      </div>
-      <button class="carousel-btn next" aria-label="Next image">&#10095;</button>
-    </div>`;
-
-  /* ---------------- Food price / inclusion logic ------------------- */
-  const foodPriceKeys = [
-    "foodPrice",
-    "food_price",
-    "mealPrice",
-    "foodCost",
-    "food_cost",
-    "food_amount",
-  ];
-
-  let foodMarkup = "";
-  if (hostel.amenities && hostel.amenities.includes("food")) {
-    const explicitFoodPriceKey = foodPriceKeys.find((k) => hostel[k] != null && hostel[k] !== "");
-    const foodPriceVal = explicitFoodPriceKey ? hostel[explicitFoodPriceKey] : null;
-
-    if (foodPriceVal != null) {
-      foodMarkup = `\n      <br/>\n      <h3>Food:</h3>\n      <p class="card-food">${formatCurrency(foodPriceVal)} / month</p>`;
-    } else {
-      foodMarkup = `\n      <br/>\n      <h3>Food:</h3>\n      <p class="card-food">Included (rent money includes food as well.)</p>`;
-    }
+  const imagesTitle = `<div class='detail-box-title'>Images</div>`;
+  let imagesMarkup = "";
+  if (imagesArr.length > 1) {
+    imagesMarkup = `
+      <div class='carousel-container'>
+        <button class='carousel-btn prev' aria-label='Previous image'>&#10094;</button>
+        <div class='carousel-track'>
+          ${imagesArr.map((url, idx) => `<img class='detail-img' src='${url}' alt='${hostel.name} image ${idx+1}' data-idx='${idx}' style='display:${idx === 0 ? 'block' : 'none'};margin-top:1rem;'/>`).join("")}
+        </div>
+        <button class='carousel-btn next' aria-label='Next image'>&#10095;</button>
+      </div>`;
+  } else {
+    imagesMarkup = imagesArr.map((url, idx) => `<img class='detail-img' src='${url}' alt='${hostel.name} image ${idx+1}' style='margin-top:1rem;'/>`).join("");
   }
+  imagesMarkup = imagesTitle + imagesMarkup;
+
+  // Rent and advance
+  const rentTitle = `<div class='detail-box-title'>Rent and advance</div>`;
+  const foodPrice = hostel.foodPrice ? `<div><b>Food:</b> ${formatCurrency(hostel.foodPrice)} / month</div>` : "";
+  const rentMarkup = rentTitle + `<div style='margin-top:1rem;'><b>Rent:</b> ${formatCurrency(hostel.price)} / month</div><div><b>Advance:</b> ${hostel.advance ? formatCurrency(hostel.advance) : "N/A"}</div>${foodPrice}`;
+
+  // Vacancies and distance
+  const vacancyTitle = `<div class='detail-box-title'>Vacancies and distance</div>`;
+  const vacancyMarkup = vacancyTitle + `<div style='margin-top:1rem;'><b>Vacancies:</b> ${hostel.vacancies != null ? hostel.vacancies : "N/A"}</div><div><b>Distance:</b> ${formatDistance(hostel.distance) || "N/A"}</div>`;
+
+  // Contact details
+  const contactTitle = `<div class='detail-box-title'>Contact Details</div>`;
+  const contactMarkup = contactTitle + `<div style='margin-top:1rem;'><b>Contact:</b> ${hostel.contact || "Not available"}</div><div><b>Location:</b> ${hostel.location}</div>${hostel.mapLink ? `<div><a href='${hostel.mapLink}' target='_blank' rel='noopener'>Google Maps</a></div>` : ""}`;
+
+  // Amenities
+  const amenitiesMarkup = `<div class='detail-box-title'>Amenities</div>` + ((hostel.amenities && hostel.amenities.length)
+    ? `<ul class='amenities-list'>${hostel.amenities.map(a => `<li>${(AMENITIES[a]?.name) || a}</li>`).join("")}</ul>`
+    : "No amenities listed.");
+
+  // Facilities
+  const facilitiesMarkup = `<div class='detail-box-title'>Nearby Facilities</div>` + ((hostel.nearbyFacilities && hostel.nearbyFacilities.length)
+    ? `<ul class='amenities-list'>${hostel.nearbyFacilities.map(f => {
+        const code = typeof f === "string" ? f : f.code;
+        const canonical = code === "restaurants" ? "restaurant" : code;
+        const dist = typeof f === "object" && f.distance != null ? formatDistance(f.distance) : "";
+        const label = canonical === "restaurant" ? "Restaurants (multiple nearby)" : (FACILITIES[canonical]?.name || canonical);
+        return `<li>${label}${dist ? " - " + dist : ""}</li>`;
+      }).join("")}</ul>`
+    : "No facilities listed.");
 
   detailEl.innerHTML = `
-    <h1 class="detail-title">${hostel.name}
+    <h1 class="${titleClass}">${hostel.name}
       ${hostel.gender === "boys"
         ? '<span class="gender-badge male" title="Male hostel"><i class="fa-solid fa-person"></i> Male</span>'
         : hostel.gender === "girls"
         ? '<span class="gender-badge female" title="Female hostel"><i class="fa-solid fa-person-dress"></i> Female</span>'
         : ''}
     </h1>
-    ${carouselMarkup}
-    <section class="neu-box detail-overview">
-      <h3>Rent:</h3>
-      <p class="card-price">${formatCurrency(hostel.price)} / month</p>
-      <br/>
-      <h3>Advance Amount:</h3>
-      <p class="card-advance">
-      ${hostel.advance ? formatCurrency(hostel.advance) : "N/A"}
-      </p>
-      ${foodMarkup}
-    </section>
-    <section class="neu-box detail-description">
-      <h3>Vacancies:</h3>
-      <p>${hostel.vacancies != null ? hostel.vacancies : "N/A"}</p>
-      <br />
-      <h3>Distance:</h3>
-      <p>${formatDistance(hostel.distance) || "N/A"}</p>
-    </section>
-    <section class="neu-box detail-amenities">
-      <h3>Amenities</h3>
-      <ul class="amenities-list">
-        ${hostel.amenities.map((a) => `<li>${(AMENITIES[a]?.name) || a}</li>`).join("")}
-      </ul>
-    </section>
-    <section class="neu-box detail-contact">
-      <h3>Contact Details</h3>
-      <p>${hostel.contact || "Not available"}</p>
-      <div class="detail-location">
-        <h3 style="margin-top: 0.5rem;">Location</h3>
-        <p style="margin-top: 0.1rem;">${hostel.location}</p>
-        <a href="${hostel.mapLink}" target="_blank" rel="noopener">Open in Google Maps</a>
-      </div>
-    </section>
-    <section class="neu-box detail-facilities">
-      <h3>Nearby Facilities</h3>
-      <ul class="amenities-list">
-        ${hostel.nearbyFacilities
-          .map((f) => {
-            const code = typeof f === "string" ? f : f.code;
-            const canonical = code === "restaurants" ? "restaurant" : code;
-            const dist =
-              typeof f === "object" && f.distance != null
-                ? formatDistance(f.distance)
-                : "";
-
-            /* NEW: friendlier label for restaurants */
-            const label =
-              canonical === "restaurant"
-                ? "Restaurants (multiple nearby)"
-                : (FACILITIES[canonical]?.name || canonical);
-
-            return `<li>${label}${dist ? " - " + dist : ""}</li>`;
-          })
-          .join("")}
-      </ul>
-    </section>
-    <section class="neu-box detail-disclaimer">
-      <p>*Distance of hostels are measured from the main gate of the college.</p>
-      <p>*Distance of nearby facilities are measured from the hostel.</p>      
-      <p>*All information is provided by the hostel owners and maybe subject to change.</p>
-      <p>*There may be extra prices for Wi-Fi, Electricity, etc. Discuss with the hostel owner.</p>
-    </section>
+    <div class="detail-grid-redesign">
+      <div class="detail-images neu-box">${imagesMarkup}</div>
+      <div class="detail-rent neu-box">${rentMarkup}</div>
+      <div class="detail-contact neu-box">${contactMarkup}</div>
+      <div class="detail-vacancy neu-box">${vacancyMarkup}</div>
+      <div class="detail-amenities neu-box">${amenitiesMarkup}</div>
+      <div class="detail-facilities neu-box">${facilitiesMarkup}</div>
+    </div>
   `;
 
-  // ----- Carousel logic -----
-  const track = qs(".carousel-track", detailEl);
-  if (track) {
-    let index = 0;
-    const slides = qsa(".detail-img", track);
-    const prevBtn = qs(".carousel-btn.prev", detailEl);
-    const nextBtn = qs(".carousel-btn.next", detailEl);
-
-    const update = () => {
-      track.style.transform = `translateX(-${index * 100}%)`;
-      // Show prev button only from second image onwards
-      if (prevBtn) prevBtn.style.visibility = index === 0 ? "hidden" : "visible";
-      // Hide next button on last image
-      if (nextBtn) nextBtn.style.visibility = index === slides.length - 1 ? "hidden" : "visible";
-    };
-
-    prevBtn.addEventListener("click", () => {
-      if (index > 0) {
-        index -= 1;
-        update();
-      }
+  // Carousel logic for images
+  if (imagesArr.length > 1) {
+    const container = detailEl.querySelector('.carousel-container');
+    const imgs = Array.from(container.querySelectorAll('.detail-img'));
+    const prevBtn = container.querySelector('.carousel-btn.prev');
+    const nextBtn = container.querySelector('.carousel-btn.next');
+    let idx = 0;
+    function showImg(i) {
+      imgs.forEach((img, j) => img.style.display = j === i ? 'block' : 'none');
+    }
+    prevBtn.addEventListener('click', () => {
+      idx = (idx - 1 + imgs.length) % imgs.length;
+      showImg(idx);
     });
-
-    nextBtn.addEventListener("click", () => {
-      if (index < slides.length - 1) {
-        index += 1;
-        update();
-      }
+    nextBtn.addEventListener('click', () => {
+      idx = (idx + 1) % imgs.length;
+      showImg(idx);
     });
-
-    update();
   }
 
-  // Add this at the end of initDetailPage
+  // Add review section logic as before
   initReviewsModule(hostel.id);
 }
 
@@ -1218,15 +1156,7 @@ function renderStarIcons(container, value, interactive = false) {
   for (let i = 1; i <= 5; i++) {
     const star = document.createElement("i");
     star.className = `fa-star ${i <= selected ? "fa-solid" : "fa-regular"}`;
-    if (interactive) {
-      star.dataset.val = i;
-      star.addEventListener("mouseover", () => renderStarIcons(container, i, true));
-      star.addEventListener("mouseout", () => renderStarIcons(container, selected, true));
-      star.addEventListener("click", () => {
-        container.dataset.selected = i;
-        renderStarIcons(container, i, true);
-      });
-    }
+    star.dataset.val = i;
     container.appendChild(star);
   }
 }
@@ -1252,10 +1182,17 @@ async function initReviewsModule(hostelId) {
   // Initialize star rating input
   renderStarIcons(starInput, 0, true);
 
+  // Event delegation for star rating selection
+  starInput.addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('fa-star') && e.target.dataset.val) {
+      this.dataset.selected = e.target.dataset.val;
+      renderStarIcons(this, +e.target.dataset.val, true);
+    }
+  });
+
   // Handle form submission
   form.onsubmit = async (e) => {
     e.preventDefault();
-    
     const rating = parseInt(starInput.dataset.selected || "0");
     if (!rating) {
       alert("Please select a rating");
