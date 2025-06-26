@@ -4,15 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us | KSU CET Hostel Finder</title>
+    <meta name="description" content="Learn about KSU CET Hostel Finder - created by students, for students to help find safe and affordable accommodation near College of Engineering, Trivandrum." />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Site styles -->
     <link rel="stylesheet" href="style.css" />
-    <!-- Font Awesome for social icons -->
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" referrerpolicy="no-referrer" />
 
     <!-- Clerk SDK -->
@@ -31,71 +32,126 @@
     </script>
   </head>
   <body>
-    <!-- ── Shared header ───────────────────────────── -->
     <header class="site-header">
       <a href="index.html" class="logo">
         <img class="logo-img" src="images/ksu%20logo%20white.png" alt="KSU Logo" />
         <span>KSU CET Hostel Finder</span>
       </a>
-      <button class="hamburger" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
+      <button class="hamburger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <nav class="site-nav">
         <ul>
-          <li><a href="index.html"><i class="fas fa-house"></i> Home</a></li>
+          <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
           <li><a href="hostels.html"><i class="fas fa-bed"></i> Hostels</a></li>
-          <li><a href="about.html" aria-current="page"><i class="fas fa-info-circle"></i> About us</a></li>
+          <li><a href="about.html" aria-current="page"><i class="fas fa-info-circle"></i> About Us</a></li>
         </ul>
       </nav>
     </header>
 
-    <!-- ── Main content ────────────────────────────── -->
     <main class="content">
-      <h1 class="page-title">About Us</h1>
+      <h1 class="page-title">About KSU CET Hostel Finder</h1>
 
-      <section class="neu-box" style="max-width: 50rem; margin-inline: auto;">
-        <h2>Our Mission</h2>
-        <p>
-          KSU CET Hostel Finder was created by students, for students.  
-          Our goal is simple: make it effortless to discover safe, affordable,
-          and convenient accommodation near <strong>College of Engineering, Trivandrum</strong>.
-        </p>
-        <br />
-        <h2>What We Do</h2>
-        <ol class="amenities-list">
-          <li>Curate up-to-date hostel listings with verified details.</li>
-          <li>Offer powerful filters for distance, budget, amenities, and gender.</li>
-          <li>Transparent pricing as given by the hostels.</li>
-        </ol>
-        <br />
-        <h2>Our other websites</h2>
-        <a href="https://ksucetsac2024.netlify.app" target="_blank" rel="noopener">
-          <button type="button" class="external-site-btn">Visit KSU Student Assist Cell Website</button>
-        </a>
-        <p>‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎‎‎To get resources for studies.</p>
-      </section>
+      <div style="display: grid; gap: 2rem; max-width: 800px; margin: 0 auto;">
+        <section class="neu-box">
+          <h2><i class="fas fa-bullseye"></i> Our Mission</h2>
+          <p style="font-size: 1.125rem; line-height: 1.7; margin-top: 1rem;">
+            KSU CET Hostel Finder was created by students, for students. Our mission is simple yet powerful: 
+            make it effortless to discover safe, affordable, and convenient accommodation near the 
+            <strong>College of Engineering, Trivandrum</strong>.
+          </p>
+          <p style="font-size: 1rem; line-height: 1.6; margin-top: 1rem; color: var(--text-secondary);">
+            We understand the challenges students face when searching for suitable accommodation. 
+            That's why we've built a comprehensive platform that puts all the information you need at your fingertips.
+          </p>
+        </section>
+
+        <section class="neu-box">
+          <h2><i class="fas fa-cogs"></i> What We Do</h2>
+          <ul class="amenities-list" style="margin-top: 1rem;">
+            <li>Curate up-to-date hostel listings with verified details and accurate information</li>
+            <li>Provide powerful search filters for distance, budget, amenities, and gender preferences</li>
+            <li>Ensure transparent pricing as provided directly by hostel owners</li>
+            <li>Offer detailed reviews and ratings from fellow students</li>
+            <li>Maintain contact information and location details for easy communication</li>
+            <li>Regular updates to ensure all information remains current and reliable</li>
+          </ul>
+        </section>
+
+        <section class="neu-box">
+          <h2><i class="fas fa-users"></i> Our Community</h2>
+          <p style="font-size: 1rem; line-height: 1.6; margin-top: 1rem;">
+            We're part of the larger KSU CET community, working closely with the Student Assist Cell 
+            to provide comprehensive support to students. Our platform is just one way we're helping 
+            make student life easier and more connected.
+          </p>
+          
+          <div style="margin-top: 2rem; text-align: center;">
+            <h3 style="margin-bottom: 1rem; color: var(--primary-color);">
+              <i class="fas fa-external-link-alt"></i> Explore Our Other Resources
+            </h3>
+            <a href="https://ksucetsac2024.netlify.app" target="_blank" rel="noopener" style="text-decoration: none;">
+              <button class="neu-button primary" style="padding: 1rem 2rem; font-size: 1.125rem;">
+                <i class="fas fa-graduation-cap"></i>
+                Visit KSU Student Assist Cell
+              </button>
+            </a>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">
+              Access study resources, academic support, and student services
+            </p>
+          </div>
+        </section>
+
+        <section class="neu-box">
+          <h2><i class="fas fa-heart"></i> Our Commitment</h2>
+          <p style="font-size: 1rem; line-height: 1.6; margin-top: 1rem;">
+            We're committed to maintaining this platform as a free, reliable resource for the student community. 
+            Our goal is to continuously improve and expand our services based on student feedback and needs.
+          </p>
+          <div style="margin-top: 1.5rem; padding: 1rem; background: var(--bg-tertiary); border-radius: var(--border-radius-sm); border-left: 4px solid var(--primary-color);">
+            <p style="font-style: italic; margin: 0; color: var(--text-secondary);">
+              "By students, for students - because we understand what it's like to search for a home away from home."
+            </p>
+          </div>
+        </section>
+      </div>
     </main>
 
-    <section class="social-links" aria-label="Social Media Links">
+    <section class="social-links" aria-label="Connect with us">
       <div class="social-popup">
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
         <div class="popup-content">
-          <a href="https://www.instagram.com/studentassistcell_cet/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>KSU Student Assist Cell</a>
-          <a href="https://www.instagram.com/ksu.cet/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>KSU CET</a>
+          <a href="https://www.instagram.com/studentassistcell_cet/" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i>
+            KSU Student Assist Cell
+          </a>
+          <a href="https://www.instagram.com/ksu.cet/" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i>
+            KSU CET Official
+          </a>
         </div>
       </div>
-      <a href="https://chat.whatsapp.com/JYDuhIWcdQLH2mud9LkkuU" aria-label="Whatsapp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
-      <a href="mailto:ksucetsac2024@gmail.com" aria-label="Gmail" target="_blank" rel="noopener"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://chat.whatsapp.com/JYDuhIWcdQLH2mud9LkkuU" aria-label="WhatsApp Group" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="mailto:ksucetsac2024@gmail.com" aria-label="Email Us" target="_blank" rel="noopener">
+        <i class="fas fa-envelope"></i>
+      </a>
     </section>
 
-    <!-- ── Shared footer ───────────────────────────── -->
     <footer class="site-footer">
-      <p>© <span id="year"></span> KSU CET Hostel Finder</p>
-      <p>in collaboration with <a href="https://flinkwebs.netlify.app" target="_blank" rel="noopener" class="flink-link">Flink</a></p>
+      <p>&copy; <span id="year"></span> KSU CET Hostel Finder. All rights reserved.</p>
+      <p>Developed in collaboration with <a href="https://flinkwebs.netlify.app" target="_blank" rel="noopener" class="flink-link">Flink Web Solutions</a></p>
     </footer>
 
     <!-- Auth check script -->
     <script src="auth-check.js"></script>
 
-    <!-- Shared JS -->
+    <!-- Main script -->
     <script defer src="script.js"></script>
   </body>
-</html> 
+</html>

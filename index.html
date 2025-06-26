@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KSU CET Hostel Finder</title>
+    <title>KSU CET Hostel Finder - Find Your Perfect Student Accommodation</title>
+    <meta name="description" content="Discover the best student hostels near College of Engineering, Trivandrum. Search by amenities, distance, and budget to find your perfect accommodation." />
 
     <!-- Clerk SDK - Load this first -->
     <script
@@ -23,80 +24,116 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Site styles -->
     <link rel="stylesheet" href="style.css" />
-    <!-- Font Awesome for social icons -->
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" referrerpolicy="no-referrer" />
   </head>
   <body>
     <header class="site-header">
-      <h1 class="logo"><img class="logo-img" src="images/ksu%20logo%20white.png" alt="KSU Logo" /><span>KSU CET Hostel Finder</span></h1>
-      <button class="hamburger" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
+      <a href="index.html" class="logo">
+        <img class="logo-img" src="images/ksu%20logo%20white.png" alt="KSU Logo" />
+        <span>KSU CET Hostel Finder</span>
+      </a>
+      <button class="hamburger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <nav class="site-nav">
-        <ul><li><a href="index.html"><i class="fas fa-house"></i> Home</a></li><li><a href="hostels.html"><i class="fas fa-bed"></i> Hostels</a></li><li><a href="about.html"><i class="fas fa-info-circle"></i> About us</a></li></ul>
+        <ul>
+          <li><a href="index.html" aria-current="page"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="hostels.html"><i class="fas fa-bed"></i> Hostels</a></li>
+          <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+        </ul>
       </nav>
     </header>
 
     <main class="hero">
-      <h2>Find Your Next Home</h2>
-      <p class="subtitle">Discover the best student hostels with the amenities you need. Search by name, features, or distance from campus.</p>
+      <h2>Find Your Perfect Student Home</h2>
+      <p class="subtitle">Discover safe, affordable, and convenient accommodation near College of Engineering, Trivandrum. Search by amenities, distance, and budget to find your ideal hostel.</p>
 
       <form id="search-form" class="search-form" action="hostels.html">
         <div class="search-filters">
-          <div class="filter-group">
-            <label for="search">Search</label>
-            <input type="search" id="search" name="q" placeholder="Search by hostel name..." />
+          <!-- WIDE CENTERED SEARCH BAR -->
+          <div class="filter-group search-bar-row" style="grid-column: 1 / -1; align-items: center;">
+            <label for="search">Search Hostels</label>
+            <input type="search" id="search" name="q" placeholder="Enter hostel name..." class="neu-input wide-search" />
           </div>
 
-          <div class="filter-group">
-            <label for="gender">Gender</label>
-            <select id="gender" name="gender">
-              <option value="">Any</option>
-              <option value="boys">Boys</option>
-              <option value="girls">Girls</option>
-            </select>
-          </div>
-
-          <div class="filter-group">
-            <label for="distance">Distance</label>
-            <div class="range-group">
-              <input type="range" id="distance" name="distance" min="0" max="2" step="0.1" value="2" />
-              <output for="distance">2 km</output>
+          <!-- TITLES AND CONTROLS IN SEPARATE ROWS -->
+          <div class="filter-row" style="grid-column: 1 / -1;">
+            <div class="filter-row-labels">
+              <div class="filter-label">Gender Preference</div>
+              <div class="filter-label">Maximum Distance</div>
+              <div class="filter-label">Required Amenities</div>
+            </div>
+            <div class="filter-row-divider"></div>
+            <div class="filter-row-controls">
+              <div class="filter-group">
+                <select id="gender" name="gender">
+                  <option value="">Any Gender</option>
+                  <option value="boys">Male Hostels</option>
+                  <option value="girls">Female Hostels</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <div class="range-group">
+                  <input type="range" id="distance" name="distance" min="0" max="2" step="0.1" value="2" />
+                  <output for="distance">2 km</output>
+                </div>
+              </div>
+              <div class="filter-group">
+                <div id="amenity-filters" class="amenity-filters">
+                  <!-- Amenities will be populated by JavaScript -->
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="filter-group">
-            <label>Amenities</label>
-            <div id="amenity-filters" class="amenity-filters">
-            </div>
-          </div>
+          <button type="submit" class="selector-submit">
+            <i class="fas fa-search"></i>
+            Search Hostels
+          </button>
         </div>
-        <button type="submit" class="selector-submit">Search Hostels</button>
       </form>
     </main>
 
-    <section class="social-links" aria-label="Social Media Links">
+    <section class="social-links" aria-label="Connect with us">
       <div class="social-popup">
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
         <div class="popup-content">
-          <a href="https://www.instagram.com/studentassistcell_cet/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>KSU Student Assist Cell</a>
-          <a href="https://www.instagram.com/ksu.cet/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>KSU CET</a>
+          <a href="https://www.instagram.com/studentassistcell_cet/" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i>
+            KSU Student Assist Cell
+          </a>
+          <a href="https://www.instagram.com/ksu.cet/" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i>
+            KSU CET Official
+          </a>
         </div>
       </div>
-      <a href="https://chat.whatsapp.com/JYDuhIWcdQLH2mud9LkkuU" aria-label="Whatsapp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
-      <a href="mailto:ksucetsac2024@gmail.com" aria-label="Gmail" target="_blank" rel="noopener"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://chat.whatsapp.com/JYDuhIWcdQLH2mud9LkkuU" aria-label="WhatsApp Group" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="mailto:ksucetsac2024@gmail.com" aria-label="Email Us" target="_blank" rel="noopener">
+        <i class="fas fa-envelope"></i>
+      </a>
     </section>
+
     <footer class="site-footer">
-      <p>© <span id="year"></span> KSU CET Hostel Finder</p>
-      <p>in collaboration with <a href="https://flinkwebs.netlify.app" target="_blank" rel="noopener" class="flink-link">Flink</a></p>
+      <p>&copy; <span id="year"></span> KSU CET Hostel Finder. All rights reserved.</p>
+      <p>Developed in collaboration with <a href="https://flinkwebs.netlify.app" target="_blank" rel="noopener" class="flink-link">Flink</a></p>
     </footer>
 
     <!-- Auth check script -->
     <script src="auth-check.js"></script>
     
-    <!-- Main script (shared across pages) -->
+    <!-- Main script -->
     <script defer src="script.js"></script>
   </body>
-</html> 
+</html>

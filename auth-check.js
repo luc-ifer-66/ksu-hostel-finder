@@ -82,35 +82,44 @@ async function checkAuth() {
     }
 
     // Remove any existing user sections first
-    const existingUserSections = document.querySelectorAll('.user-section');
+    const existingUserSections = document.querySelectorAll('.user-section, .profile-btn');
     existingUserSections.forEach(section => section.remove());
 
-    // Add user profile section to header
+    // Add user profile button to header
     const header = document.querySelector('.site-header');
     if (header) {
-      const userSection = document.createElement('div');
-      userSection.className = 'user-section';
-      
-      // Add user info display
-      const userInfo = document.createElement('div');
-      userInfo.className = 'user-info';
-      
-      const userLabel = document.createElement('span');
-      userLabel.className = 'user-label';
-      userLabel.textContent = isAdmin ? 'Admin' : 'User';
-      
-      const userEmail = document.createElement('span');
-      userEmail.className = 'user-email';
-      userEmail.textContent = Clerk.user.primaryEmailAddress?.emailAddress || '';
-      
-      userInfo.appendChild(userLabel);
-      userInfo.appendChild(userEmail);
-      
-      // Add sign out button
-      const signOutBtn = document.createElement('button');
-      signOutBtn.className = 'sign-out-btn';
-      signOutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i><span>Sign Out</span>';
-      signOutBtn.onclick = async () => {
+      // Create profile button
+      const profileBtn = document.createElement('button');
+      profileBtn.className = 'profile-btn';
+      profileBtn.type = 'button';
+      profileBtn.innerHTML = `
+        <i class="fas fa-user-circle"></i>
+        <span>Profile</span>
+        <div class="profile-popup">
+          <div class="user-label">${isAdmin ? 'Admin' : 'User'}</div>
+          <div class="user-email">${Clerk.user.primaryEmailAddress?.emailAddress || ''}</div>
+          <button class="sign-out-btn"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+        </div>
+      `;
+      // Toggle popup on click
+      profileBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        profileBtn.classList.toggle('active');
+      });
+      // Close popup on outside click
+      document.addEventListener('click', function(e) {
+        if (!profileBtn.contains(e.target)) {
+          profileBtn.classList.remove('active');
+        }
+      });
+      // Close popup on Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          profileBtn.classList.remove('active');
+        }
+      });
+      // Sign out button
+      profileBtn.querySelector('.sign-out-btn').onclick = async () => {
         try {
           await Clerk.signOut();
           window.location.href = basePath + 'auth.html';
@@ -118,16 +127,12 @@ async function checkAuth() {
           console.error('Sign out failed:', error);
         }
       };
-      
-      userSection.appendChild(userInfo);
-      userSection.appendChild(signOutBtn);
-      
-      // Insert user section before the nav
+      // Insert profile button before nav (so it's at the far right)
       const nav = header.querySelector('.site-nav');
       if (nav) {
-        header.insertBefore(userSection, nav);
+        header.insertBefore(profileBtn, null); // append at end
       } else {
-        header.appendChild(userSection);
+        header.appendChild(profileBtn);
       }
     }
 

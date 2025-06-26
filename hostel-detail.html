@@ -4,15 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hostel Details | KSU CET Hostel Finder</title>
+    <meta name="description" content="View detailed information about student hostels near College of Engineering, Trivandrum including amenities, pricing, and reviews." />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Site styles -->
     <link rel="stylesheet" href="style.css" />
-    <!-- Font Awesome for social icons -->
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" referrerpolicy="no-referrer" />
 
     <!-- Clerk SDK -->
@@ -32,63 +33,93 @@
   </head>
   <body>
     <header class="site-header">
-      <a href="index.html" class="logo"><img class="logo-img" src="images/ksu%20logo%20white.png" alt="KSU Logo" /><span>KSU CET Hostel Finder</span></a>
-      <button class="hamburger" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
+      <a href="index.html" class="logo">
+        <img class="logo-img" src="images/ksu%20logo%20white.png" alt="KSU Logo" />
+        <span>KSU CET Hostel Finder</span>
+      </a>
+      <button class="hamburger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <nav class="site-nav">
         <ul>
-          <li><a href="index.html"><i class="fas fa-house"></i> Home</a></li>
+          <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
           <li><a href="hostels.html"><i class="fas fa-bed"></i> Hostels</a></li>
-          <li><a href="about.html"><i class="fas fa-info-circle"></i> About us</a></li>
+          <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
         </ul>
       </nav>
     </header>
 
     <main class="content">
-      <button class="back-btn" onclick="history.back()">← Back</button>
+      <button class="back-btn" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i>
+        Back to Hostels
+      </button>
+      
       <article id="hostel-detail" class="hostel-detail"></article>
 
       <!-- Review & Rating Section -->
       <div class="review-flex-row" id="reviews-box" hidden>
-        <section class="neu-box review-section review-form-box">
-          <h3>Rating & Reviews</h3>
-          <p class="avg-rating">
-            <span id="avg-stars"></span>
-            <span id="avg-score"></span> · <span id="review-count"></span>
-          </p>
+        <section class="review-section review-form-box">
+          <h3><i class="fas fa-star"></i> Rate & Review</h3>
+          <div class="avg-rating">
+            <div>
+              <span id="avg-stars"></span>
+              <span id="avg-score"></span>
+            </div>
+            <span id="review-count"></span>
+          </div>
           <form id="review-form">
             <div class="star-input" id="star-input">
-              <i class="fa-regular fa-star" data-val="1"></i>
-              <i class="fa-regular fa-star" data-val="2"></i>
-              <i class="fa-regular fa-star" data-val="3"></i>
-              <i class="fa-regular fa-star" data-val="4"></i>
-              <i class="fa-regular fa-star" data-val="5"></i>
+              <i class="far fa-star" data-val="1"></i>
+              <i class="far fa-star" data-val="2"></i>
+              <i class="far fa-star" data-val="3"></i>
+              <i class="far fa-star" data-val="4"></i>
+              <i class="far fa-star" data-val="5"></i>
             </div>
-            <textarea id="review-text" rows="3" placeholder="Share your experience…" required></textarea>
-            <button type="submit">Submit</button>
+            <textarea id="review-text" rows="4" placeholder="Share your experience with this hostel..." required></textarea>
+            <button type="submit">
+              <i class="fas fa-paper-plane"></i>
+              Submit Review
+            </button>
           </form>
         </section>
-        <section class="neu-box review-section review-list-box">
-          <h3>All Reviews</h3>
+        
+        <section class="review-section review-list-box">
+          <h3><i class="fas fa-comments"></i> All Reviews</h3>
           <ul id="reviews-list-box" class="reviews-list"></ul>
         </section>
       </div>
     </main>
 
-    <section class="social-links" aria-label="Social Media Links">
+    <section class="social-links" aria-label="Connect with us">
       <div class="social-popup">
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
         <div class="popup-content">
-          <a href="https://www.instagram.com/studentassistcell_cet/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>KSU Student Assist Cell</a>
-          <a href="https://www.instagram.com/ksu.cet/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>KSU CET</a>
+          <a href="https://www.instagram.com/studentassistcell_cet/" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i>
+            KSU Student Assist Cell
+          </a>
+          <a href="https://www.instagram.com/ksu.cet/" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i>
+            KSU CET Official
+          </a>
         </div>
       </div>
-      <a href="https://chat.whatsapp.com/JYDuhIWcdQLH2mud9LkkuU" aria-label="Whatsapp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
-      <a href="mailto:ksucetsac2024@gmail.com" aria-label="Gmail" target="_blank" rel="noopener"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://chat.whatsapp.com/JYDuhIWcdQLH2mud9LkkuU" aria-label="WhatsApp Group" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="mailto:ksucetsac2024@gmail.com" aria-label="Email Us" target="_blank" rel="noopener">
+        <i class="fas fa-envelope"></i>
+      </a>
     </section>
 
     <footer class="site-footer">
-      <p>© <span id="year"></span> KSU CET Hostel Finder</p>
-      <p>in collaboration with <a href="https://flinkwebs.netlify.app" target="_blank" rel="noopener" class="flink-link">Flink</a></p>
+      <p>&copy; <span id="year"></span> KSU CET Hostel Finder. All rights reserved.</p>
+      <p>Developed in collaboration with <a href="https://flinkwebs.netlify.app" target="_blank" rel="noopener" class="flink-link">Flink Web Solutions</a></p>
     </footer>
 
     <!-- Firebase SDKs -->
@@ -151,4 +182,4 @@
     <!-- Main script -->
     <script defer src="script.js"></script>
   </body>
-</html> 
+</html>

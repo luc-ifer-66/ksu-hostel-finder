@@ -4,12 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Available Hostels | KSU CET Hostel Finder</title>
+    <meta name="description" content="Browse all available student hostels near College of Engineering, Trivandrum. Filter by price, distance, amenities, and gender preferences." />
+    
     <link rel="stylesheet" href="style.css" />
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <!-- Font Awesome for social icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" referrerpolicy="no-referrer" />
 
     <!-- Clerk SDK -->
@@ -29,42 +31,61 @@
   </head>
   <body>
     <header class="site-header">
-      <a href="index.html" class="logo"><img class="logo-img" src="images/ksu%20logo%20white.png" alt="KSU Logo" /><span>KSU CET Hostel Finder</span></a>
-      <button class="hamburger" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
+      <a href="index.html" class="logo">
+        <img class="logo-img" src="images/ksu%20logo%20white.png" alt="KSU Logo" />
+        <span>KSU CET Hostel Finder</span>
+      </a>
+      <button class="hamburger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <nav class="site-nav">
         <ul>
-          <li><a href="index.html"><i class="fas fa-house"></i> Home</a></li>
-          <li><a href="hostels.html"><i class="fas fa-bed"></i> Hostels</a></li>
-          <li><a href="about.html"><i class="fas fa-info-circle"></i> About us</a></li>
+          <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="hostels.html" aria-current="page"><i class="fas fa-bed"></i> Hostels</a></li>
+          <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
         </ul>
       </nav>
     </header>
 
     <main class="content">
       <section class="hostels-controls">
-        <h2 class="page-title">Available Hostels <span id="results-count" class="results-count"></span></h2>
+        <div>
+          <h1 class="page-title">Available Hostels <span id="results-count" class="results-count"></span></h1>
+        </div>
+        
         <div class="sort-wrapper">
-          <label for="sort-select">Sort:</label>
+          <label for="sort-select">Sort by:</label>
           <select id="sort-select">
-            <option value="distance">By Distance</option>
+            <option value="distance">Distance from Campus</option>
             <option value="price_asc">Price — Low to High</option>
             <option value="price_desc">Price — High to Low</option>
-            <option value="rating">Rating</option>
+            <option value="rating">Highest Rated</option>
           </select>
         </div>
+        
         <!-- Gender Selector -->
         <div class="gender-selector-wrapper">
-          <div class="glass-radio-group-vertical gender-radio-group" id="gender-selector-hostels">
+          <div class="gender-radio-group" id="gender-selector-hostels">
             <input type="radio" id="gender-male-h" name="gender-hostels" value="male" />
             <label for="gender-male-h">
-              <span class="radio-indicator"><span class="checkmark">✔</span></span>
-              <span class="label-text"><i class="fa-solid fa-person"></i> Male</span>
+              <span class="radio-indicator">
+                <span class="checkmark">✓</span>
+              </span>
+              <span class="label-text">
+                <i class="fas fa-mars"></i> Male Hostels
+              </span>
             </label>
 
             <input type="radio" id="gender-female-h" name="gender-hostels" value="female" />
             <label for="gender-female-h">
-              <span class="radio-indicator"><span class="checkmark">✔</span></span>
-              <span class="label-text"><i class="fa-solid fa-person-dress"></i> Female</span>
+              <span class="radio-indicator">
+                <span class="checkmark">✓</span>
+              </span>
+              <span class="label-text">
+                <i class="fas fa-venus"></i> Female Hostels
+              </span>
             </label>
 
             <div class="glass-glider-vertical"></div>
@@ -73,24 +94,40 @@
       </section>
 
       <section id="hostels-list" class="hostels-list"></section>
-      <p id="empty-state" class="empty-state" hidden>No hostels found.</p>
+      <div id="empty-state" class="empty-state" hidden>
+        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+        <p>No hostels found matching your criteria.</p>
+        <p>Try adjusting your filters or search terms.</p>
+      </div>
     </main>
 
-    <section class="social-links" aria-label="Social Media Links">
+    <section class="social-links" aria-label="Connect with us">
       <div class="social-popup">
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
         <div class="popup-content">
-          <a href="https://www.instagram.com/studentassistcell_cet/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>KSU Student Assist Cell</a>
-          <a href="https://www.instagram.com/ksu.cet/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>KSU CET</a>
+          <a href="https://www.instagram.com/studentassistcell_cet/" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i>
+            KSU Student Assist Cell
+          </a>
+          <a href="https://www.instagram.com/ksu.cet/" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i>
+            KSU CET Official
+          </a>
         </div>
       </div>
-      <a href="https://chat.whatsapp.com/JYDuhIWcdQLH2mud9LkkuU" aria-label="Whatsapp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
-      <a href="mailto:ksucetsac2024@gmail.com" aria-label="Gmail" target="_blank" rel="noopener"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://chat.whatsapp.com/JYDuhIWcdQLH2mud9LkkuU" aria-label="WhatsApp Group" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="mailto:ksucetsac2024@gmail.com" aria-label="Email Us" target="_blank" rel="noopener">
+        <i class="fas fa-envelope"></i>
+      </a>
     </section>
 
     <footer class="site-footer">
-      <p>© <span id="year"></span> KSU CET Hostel Finder</p>
-      <p>in collaboration with <a href="https://flinkwebs.netlify.app" target="_blank" rel="noopener" class="flink-link">Flink</a></p>
+      <p>&copy; <span id="year"></span> KSU CET Hostel Finder. All rights reserved.</p>
+      <p>Developed in collaboration with <a href="https://flinkwebs.netlify.app" target="_blank" rel="noopener" class="flink-link">Flink Web Solutions</a></p>
     </footer>
 
     <!-- Firebase SDKs -->
@@ -158,14 +195,14 @@
         orderBy,
         serverTimestamp,
         timestamp: serverTimestamp(),
-        getNextHostelId  // Add the new function to the global firebase object
+        getNextHostelId
       };
     </script>
 
     <!-- Auth check script -->
     <script src="auth-check.js"></script>
 
-    <!-- Main script (shared across pages) -->
+    <!-- Main script -->
     <script defer src="script.js"></script>
   </body>
-</html> 
+</html>

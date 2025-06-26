@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign In | KSU CET Hostel Finder</title>
+    <meta name="description" content="Sign in to access KSU CET Hostel Finder and discover the best student accommodation near College of Engineering, Trivandrum." />
 
     <!-- Site styles - Load before Clerk to ensure our styles take precedence -->
     <link rel="stylesheet" href="style.css" />
@@ -11,7 +12,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" referrerpolicy="no-referrer" />
@@ -42,29 +43,48 @@
             appearance: {
               baseTheme: 'dark',
               variables: {
-                colorPrimary: '#2563eb',
-                colorBackground: 'transparent',
-                colorText: '#f8fafc',
-                colorTextSecondary: '#cbd5e1',
-                colorInputBackground: 'rgba(255, 255, 255, 0.05)',
-                colorInputText: '#f8fafc',
-                colorSuccess: '#22c55e',
-                colorDanger: '#ef4444'
+                colorPrimary: '#2196f3',
+                colorBackground: '#10141a',
+                colorText: '#e3f2fd',
+                colorTextSecondary: '#90caf9',
+                colorInputBackground: '#181e26',
+                colorInputText: '#e3f2fd',
+                colorSuccess: '#48bb78',
+                colorDanger: '#f56565',
+                borderRadius: '12px'
               },
               elements: {
                 formButtonPrimary: {
                   fontSize: '1rem',
-                  fontWeight: '500',
-                  padding: '0.75rem 1.5rem',
-                  backgroundColor: 'var(--primary-color)',
+                  fontWeight: '600',
+                  padding: '0.875rem rem',
+                  background: 'linear-gradient(135deg, #2196f3 0%, #1565c0 100%)',
+                  borderRadius: '12px',
+                  boxShadow: '5px 5px 10px #0a0d12, -5px -5px 10px #232b36',
+                  border: 'none',
+                  color: '#fff',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   '&:hover': {
-                    backgroundColor: 'var(--accent-color)'
+                    transform: 'translateY(-2px)',
+                    boxShadow: '8px 8px 16px #0a0d12, -8px -8px 16px #232b36'
                   }
                 },
                 card: {
                   border: 'none',
                   boxShadow: 'none',
                   backgroundColor: 'transparent'
+                },
+                formFieldInput: {
+                  backgroundColor: '#181e26',
+                  border: 'none',
+                  borderRadius: '16px',
+                  color: '#e3f2fd',
+                  boxShadow: 'inset 2px 2px 5px #0a0d12, inset -2px -2px 5px #232b36',
+                  padding: '0.875rem 1.25rem',
+                  fontSize: '1rem',
+                  '&:focus': {
+                    boxShadow: 'inset 4px 4px 8px #0a0d12, inset -4px -4px 8px #232b36, 0 0 0 3px rgba(33, 150, 243, 0.1)'
+                  }
                 }
               }
             }
@@ -110,19 +130,17 @@
       </a>
     </header>
 
-    <main class="content">
-      <div class="auth-container">
-        <div class="auth-box">
-          <h1>Welcome Back</h1>
-          <p class="auth-subtitle">Sign in to continue to KSU CET Hostel Finder</p>
-          <div id="sign-in"></div>
-        </div>
-      </div>
+    <main class="auth-container">
+      <div class="auth-center-wrap"><div class="auth-box">
+        <h1><i class="fas fa-sign-in-alt"></i> Welcome Back</h1>
+        <p class="auth-subtitle">Sign in to continue to KSU CET Hostel Finder and discover your perfect student accommodation</p>
+        <div id="sign-in"></div>
+      </div></div>
     </main>
 
     <footer class="site-footer">
-      <p>© <span id="year"></span> KSU CET Hostel Finder</p>
-      <p>in collaboration with <a href="https://flinkwebs.netlify.app" target="_blank" rel="noopener" class="flink-link">Flink</a></p>
+      <p>&copy; <span id="year"></span> KSU CET Hostel Finder. All rights reserved.</p>
+      <p>Developed in collaboration with <a href="https://flinkwebs.netlify.app" target="_blank" rel="noopener" class="flink-link">Flink Web Solutions</a></p>
     </footer>
 
     <script>
@@ -130,4 +148,4 @@
       document.getElementById('year').textContent = new Date().getFullYear();
     </script>
   </body>
-</html> 
+</html>
