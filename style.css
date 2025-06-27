@@ -2154,3 +2154,9 @@ output {
     align-items: center !important;
   }
 }
+@media (max-width: 600px) {
+  .search-form {
+    margin-left: -10px !important;
+    padding-left: 0.3rem !important;
+  }
+}
