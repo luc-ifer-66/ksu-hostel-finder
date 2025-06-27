@@ -40,13 +40,14 @@
         <span></span>
         <span></span>
       </button>
-      <nav class="site-nav">
+      <nav class="site-nav" id="main-nav">
         <ul>
           <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
           <li><a href="hostels.html" aria-current="page"><i class="fas fa-bed"></i> Hostels</a></li>
           <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
         </ul>
       </nav>
+      <div class="mobile-nav-overlay" tabindex="-1" aria-hidden="true"></div>
     </header>
 
     <main class="content">
@@ -95,9 +96,6 @@
 
       <section id="hostels-list" class="hostels-list"></section>
       <div id="empty-state" class="empty-state" hidden>
-        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-        <p>No hostels found matching your criteria.</p>
-        <p>Try adjusting your filters or search terms.</p>
       </div>
     </main>
 
