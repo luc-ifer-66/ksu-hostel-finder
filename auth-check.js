@@ -34,50 +34,39 @@ async function checkAuth() {
     const currentPath = window.location.pathname;
     const basePath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
     const currentPage = currentPath.split('/').pop();
-    
-    console.log('Checking user status...');
-    if (!Clerk.user) {
-      console.log('No user found, redirecting to auth...');
-      // Only redirect to auth.html if not already on auth page
-      if (currentPage !== 'auth.html') {
-        window.location.href = basePath + 'auth.html';
+
+    // Only enforce auth for hostel-detail.html and auth.html
+    if (currentPage === 'hostel-detail.html') {
+      if (!Clerk.user) {
+        // Let script.js handle the blur overlay and login prompt
+        document.documentElement.style.display = 'block';
         return false;
       }
-    } else {
-      console.log('User found:', Clerk.user.primaryEmailAddress?.emailAddress);
-      // If user is logged in and on auth page, redirect to index
-      if (currentPage === 'auth.html') {
-        window.location.href = basePath + 'index.html';
-        return true;
-      }
+    }
+    // For index.html and hostels.html, do not redirect or block
+
+    // If user is logged in and on auth page, redirect to index
+    if (Clerk.user && currentPage === 'auth.html') {
+      window.location.href = basePath + 'index.html';
+      return true;
     }
 
     // Set authentication state
-    isAuthenticated = true;
-    
+    isAuthenticated = !!Clerk.user;
+
     // Check if user is admin
     const userEmail = Clerk.user?.primaryEmailAddress?.emailAddress;
-    console.log('Checking admin status for email:', userEmail);
     isAdmin = userEmail === 'ksucetsac2024@gmail.com';
-    console.log('Is admin?', isAdmin);
-    
-    // Add admin class to body if user is admin
     if (isAdmin) {
-      console.log('User is admin, updating UI...');
       document.body.classList.add('is-admin');
-      
       // Show add hostel button if we're on the hostels page
       const addHostelWrapper = document.querySelector('.add-hostel-wrapper');
       if (addHostelWrapper) {
-        console.log('Found add hostel wrapper, making visible');
         addHostelWrapper.style.display = 'flex';
-        // Also update the button itself
         const addHostelBtn = document.querySelector('#add-hostel-btn');
         if (addHostelBtn) {
           addHostelBtn.style.display = 'flex';
         }
-      } else {
-        console.log('Add hostel wrapper not found');
       }
     }
 
@@ -87,7 +76,7 @@ async function checkAuth() {
 
     // Add user profile button to header
     const header = document.querySelector('.site-header');
-    if (header) {
+    if (header && Clerk.user) {
       // Create profile button
       const profileBtn = document.createElement('button');
       profileBtn.className = 'profile-btn';
@@ -122,7 +111,7 @@ async function checkAuth() {
       profileBtn.querySelector('.sign-out-btn').onclick = async () => {
         try {
           await Clerk.signOut();
-          window.location.href = basePath + 'auth.html';
+          window.location.href = basePath + 'index.html';
         } catch (error) {
           console.error('Sign out failed:', error);
         }
@@ -142,9 +131,12 @@ async function checkAuth() {
   } catch (error) {
     console.error('Auth check failed:', error);
     console.error('Error details:', error.message);
+    // Only redirect to auth.html if on hostel-detail.html
     const currentPath = window.location.pathname;
-    const basePath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
-    window.location.href = basePath + 'auth.html';
+    const currentPage = currentPath.split('/').pop();
+    if (currentPage === 'hostel-detail.html') {
+      window.location.href = basePath + 'auth.html';
+    }
     return false;
   }
 }
