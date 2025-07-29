@@ -6,21 +6,6 @@
     <title>KSU CET Hostel Finder - Find Your Perfect Student Accommodation</title>
     <meta name="description" content="Discover the best student hostels near College of Engineering, Trivandrum. Search by amenities, distance, and budget to find your perfect accommodation." />
 
-    <!-- Clerk SDK - Load this first -->
-    <script
-      async
-      crossorigin="anonymous"
-      data-clerk-publishable-key="pk_test_bmVhcmJ5LXN3aWZ0LTU4LmNsZXJrLmFjY291bnRzLmRldiQ"
-      src="https://nearby-swift-58.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"
-      type="text/javascript"
-    ></script>
-
-    <!-- Auth Check -->
-    <script>
-      // Prevent any content from showing until auth is checked
-      document.documentElement.style.display = 'none';
-    </script>
-
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -120,8 +105,8 @@
         <i class="fas fa-envelope"></i>
       </a>
     </section>
-    <section class="contacts-section" style="background: none;">
-      <h2 style="text-align:left; color:var(--primary-color); padding-left: 2rem; margin-bottom:2rem; font-size:2rem; font-weight:800;">Contact Us</h2>
+    <section class="contacts-section">
+      <h2 style="text-align:left; color:var(--primary-color); margin-bottom:2rem; font-size:2rem; font-weight:800;">Contact Us</h2>
       <div class="contacts-grid" style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center;">
         <div class="neu-card" style="min-width:260px; max-width:320px; flex:1 1 260px; display:flex; flex-direction:column; align-items:flex-start;">
           <div class="contact-icon" style="font-size:2.5rem; color:var(--primary-color); margin-bottom:1rem;"><i class="fas fa-user"></i></div>
@@ -130,25 +115,22 @@
         </div>
         <div class="neu-card" style="min-width:260px; max-width:320px; flex:1 1 260px; display:flex; flex-direction:column; align-items:flex-start;">
           <div class="contact-icon" style="font-size:2.5rem; color:var(--primary-color); margin-bottom:1rem;"><i class="fas fa-user"></i></div>
-          <h3 style="font-size:1.3rem; font-weight:700; color:var(--text-primary); margin-bottom:0.5rem;">Yamin Beck</h3>
-          <p style="color:var(--text-secondary); font-size:1.1rem;"><i class="fas fa-phone"></i> 7012837399</p>
-        </div>
-        <div class="neu-card" style="min-width:260px; max-width:320px; flex:1 1 260px; display:flex; flex-direction:column; align-items:flex-start;">
-          <div class="contact-icon" style="font-size:2.5rem; color:var(--primary-color); margin-bottom:1rem;"><i class="fas fa-user"></i></div>
           <h3 style="font-size:1.3rem; font-weight:700; color:var(--text-primary); margin-bottom:0.5rem;">Noel Tom</h3>
           <p style="color:var(--text-secondary); font-size:1.1rem;"><i class="fas fa-phone"></i> 6238999360</p>
         </div>
+        <div class="neu-card" style="min-width:260px; max-width:320px; flex:1 1 260px; display:flex; flex-direction:column; align-items:flex-start;">
+          <div class="contact-icon" style="font-size:2.5rem; color:var(--primary-color); margin-bottom:1rem;"><i class="fas fa-user"></i></div>
+          <h3 style="font-size:1.3rem; font-weight:700; color:var(--text-primary); margin-bottom:0.5rem;">Yamin Beck</h3>
+          <p style="color:var(--text-secondary); font-size:1.1rem;"><i class="fas fa-phone"></i> 7012837399</p>
+        </div>
       </div>
-      <br />
+      <br />image.png
     </section>
 
     <footer class="site-footer">
       <p>&copy; <span id="year"></span> KSU CET Hostel Finder. All rights reserved.</p>
       <p>Developed in collaboration with <a href="https://flinkwebs.netlify.app" target="_blank" rel="noopener" class="flink-link">Flink</a></p>
     </footer>
-
-    <!-- Auth check script -->
-    <script src="auth-check.js"></script>
     
     <!-- Main script -->
     <script defer src="script.js"></script>

@@ -621,102 +621,6 @@ const fallbackHostels = [
 /* Hostels array populated at runtime ----------------------------------*/
 let hostels = [];
 
-/* Auth state management
-let isAuthenticated = false;
-let isAdmin = false;
-
-// Check authentication on every page load
-async function checkAuth() {
-  try {
-    await Clerk.load();
-    
-    if (!Clerk.user) {
-      // Redirect to auth page if not signed in
-      window.location.replace('auth.html');
-      return false;
-    }
-
-    // Set authentication state
-    isAuthenticated = true;
-    
-    // Check if user is admin
-    isAdmin = Clerk.user.primaryEmailAddress?.emailAddress === 'ksucetsac2024@gmail.com';
-    
-    // Add admin class to body if user is admin
-    if (isAdmin) {
-      document.body.classList.add('is-admin');
-    }
-
-    // Add user profile section to header
-    const header = document.querySelector('.site-header');
-    const userSection = document.createElement('div');
-    userSection.className = 'user-section';
-    
-    // Add user info display
-    const userInfo = document.createElement('div');
-    userInfo.className = 'user-info';
-    
-    const userName = document.createElement('span');
-    userName.className = 'user-name';
-    userName.textContent = Clerk.user.firstName || 'User';
-    
-    const userEmail = document.createElement('span');
-    userEmail.className = 'user-email';
-    userEmail.textContent = Clerk.user.primaryEmailAddress?.emailAddress || '';
-    
-    userInfo.appendChild(userName);
-    userInfo.appendChild(userEmail);
-    
-    // Add sign out button
-    const signOutBtn = document.createElement('button');
-    signOutBtn.className = 'sign-out-btn';
-    signOutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i><span>Sign Out</span>';
-    signOutBtn.onclick = async () => {
-      try {
-        await Clerk.signOut();
-        window.location.replace('auth.html');
-      } catch (error) {
-        console.error('Sign out failed:', error);
-      }
-    };
-    
-    userSection.appendChild(userInfo);
-    userSection.appendChild(signOutBtn);
-    header.appendChild(userSection);
-
-    return true;
-  } catch (error) {
-    console.error('Auth check failed:', error);
-    window.location.replace('auth.html');
-    return false;
-  }
-}
-
-// ... existing code ...
-
-// Modify initHostelsPage to check auth first
-async function initHostelsPage() {
-  if (!await checkAuth()) return;
-  
-  // Rest of the existing initHostelsPage code...
-}
-
-// Modify initDetailPage to check auth first
-async function initDetailPage() {
-  if (!await checkAuth()) return;
-  
-  // Rest of the existing initDetailPage code...
-}
-
-// Modify initIndexPage to check auth first
-async function initIndexPage() {
-  if (!await checkAuth()) return;
-  
-  // Rest of the existing initIndexPage code...
-}
-
-// ... rest of the existing code ... */
-
 /* Dataset loading (static) --------------------------------------------*/
 async function fetchHostels() {
   if (hostels.length) return hostels; // already loaded
@@ -1039,94 +943,9 @@ async function initHostelsPage() {
 }
 
 /* Detail page ---------------------------------------------------------- */
-async function checkAuthForDetailPage() {
-  try {
-    if (!window.Clerk) {
-      await new Promise((resolve) => {
-        window.addEventListener('load', () => {
-          if (window.Clerk) resolve();
-        });
-      });
-    }
-    if (!Clerk.isLoaded) {
-      await Clerk.load();
-    }
-    if (!Clerk.user) {
-      return false;
-    }
-    return true;
-  } catch (error) {
-    return false;
-  }
-}
-
 async function initDetailPage() {
   const detailEl = qs("#hostel-detail");
   if (!detailEl) return; // not on detail page
-
-  // Check authentication for detail page
-  const isAuthed = await checkAuthForDetailPage();
-
-  if (!isAuthed) {
-    // Blur the details and show overlay
-    detailEl.style.filter = 'blur(6px)';
-    let overlay = document.createElement('div');
-    overlay.className = 'login-blur-overlay';
-    overlay.innerHTML = `
-      <div class="login-blur-message">
-        <p><b>Login to View Hostel Details</b></p>
-        <button class="login-btn">Login</button>
-      </div>
-    `;
-    detailEl.parentNode.insertBefore(overlay, detailEl.nextSibling);
-    // Style overlay via JS for now (add to CSS later)
-    Object.assign(overlay.style, {
-      position: 'absolute',
-      top: detailEl.offsetTop + 'px',
-      left: detailEl.offsetLeft + 'px',
-      width: detailEl.offsetWidth + 'px',
-      height: detailEl.offsetHeight + 'px',
-      background: 'rgba(16,20,26,0.7)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 2000,
-      color: '#fff',
-      borderRadius: '20px',
-      textAlign: 'center',
-    });
-    // Center message
-    let msg = overlay.querySelector('.login-blur-message');
-    Object.assign(msg.style, {
-      background: 'rgba(33,150,243,0.95)',
-      padding: '2rem 2.5rem',
-      borderRadius: '16px',
-      boxShadow: '0 4px 24px rgba(0,0,0,0.2)',
-      color: '#fff',
-      fontSize: '1.2rem',
-      fontWeight: '600',
-    });
-    // Button style
-    let btn = overlay.querySelector('.login-btn');
-    Object.assign(btn.style, {
-      marginTop: '1.2rem',
-      padding: '0.8rem 2.2rem',
-      fontSize: '1.1rem',
-      borderRadius: '12px',
-      border: 'none',
-      background: 'linear-gradient(135deg, #2196f3 0%, #1565c0 100%)',
-      color: '#fff',
-      fontWeight: '700',
-      cursor: 'pointer',
-      boxShadow: '0 2px 8px rgba(33,150,243,0.15)',
-    });
-    btn.onclick = function() {
-      window.location.href = 'auth.html';
-    };
-    // Prevent interaction with blurred content
-    overlay.addEventListener('click', e => e.stopPropagation());
-    return;
-  }
 
   // Ensure hostels data is loaded
   await fetchHostels();
@@ -1434,10 +1253,6 @@ async function initPage() {
     return;
   }
   
-  // Check authentication first
-  const isAuthed = await checkAuth();
-  if (!isAuthed) return;
-
   // Initialize specific page
   if (path.includes('hostels.html')) {
     await initHostelsPage();
