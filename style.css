@@ -183,7 +183,7 @@ body {
   justify-content: space-between;
   gap: 0.5rem;
   padding: 1rem var(--container-padding);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.1rem;
 }
 
 .site-nav {
@@ -235,7 +235,6 @@ body {
 .hero {
   padding: 4rem var(--container-padding);
   text-align: center;
-  background: var(--bg-primary);
   position: relative;
   overflow: hidden;
   margin-top: 0;
@@ -248,14 +247,15 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(33, 150, 243, 0.05) 0%, transparent 70%);
-  animation: float 20s ease-in-out infinite;
+  background: var(--bg-primary);
+  /* animation: float 20s ease-in-out infinite; */
 }
-
+/*
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-20px) rotate(180deg); }
 }
+*/
 
 .hero h2 {
   font-size: clamp(2.5rem, 5vw, 4rem);
@@ -1234,6 +1234,9 @@ output {
 }
 
 .popup-content a {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
   border-radius: var(--border-radius-sm);
   box-shadow: none;
   font-size: var(--font-size-sm);
